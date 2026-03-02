@@ -4,9 +4,12 @@ let filteredNovels = [];
 let bookmarks = [];
 let lastRead = null;
 let currentPage = 1;
-let novelsPerPage = 24; // Increased untuk menampung lebih banyak card
+let novelsPerPage = 24;
 let previousData = null;
 let autoRefreshInterval = null;
+
+// Base URL for subdirectory
+const BASE_URL = '/light-novel';
 
 // DOM Elements
 const loadingIndicator = document.getElementById('loadingIndicator');
@@ -139,7 +142,7 @@ function toggleCardBookmark(event, novelId) {
     saveBookmarks();
     
     // Update bookmark page if open
-    if (window.location.pathname === '/bookmark.html') {
+    if (window.location.pathname === '/light-novel/bookmark.html') {
         loadBookmarks();
     }
 }
@@ -154,7 +157,7 @@ function setupAutoRefresh() {
 
 async function checkForUpdates() {
     try {
-        const response = await fetch(`/data/novels.json?t=${Date.now()}`);
+        const response = await fetch(`${BASE_URL}/data/novels.json?t=${Date.now()}`);
         const newData = await response.json();
         
         if (previousData && JSON.stringify(previousData) !== JSON.stringify(newData)) {
@@ -174,7 +177,7 @@ async function checkForUpdates() {
 async function loadNovels() {
     showLoading();
     try {
-        const response = await fetch('/data/novels.json?t=' + Date.now());
+        const response = await fetch(`${BASE_URL}/data/novels.json?t=` + Date.now());
         if (!response.ok) throw new Error('Failed to load novels');
         novels = await response.json();
         previousData = [...novels];
@@ -192,13 +195,13 @@ async function loadNovels() {
 function updateUI() {
     const path = window.location.pathname;
     
-    if (path === '/' || path === '/index.html') {
+    if (path === '/light-novel/' || path === '/light-novel/index.html') {
         updateHomePage();
-    } else if (path === '/novel.html') {
+    } else if (path === '/light-novel/novel.html') {
         updateNovelDetailPage();
-    } else if (path === '/read.html') {
+    } else if (path === '/light-novel/read.html') {
         updateReaderPage();
-    } else if (path === '/bookmark.html') {
+    } else if (path === '/light-novel/bookmark.html') {
         loadBookmarks();
     }
 }
@@ -273,7 +276,7 @@ function updateContinueReading() {
     `;
     
     continueCard.onclick = () => {
-        window.location.href = `/read.html?novelId=${novel.id}&chapter=${lastRead.chapterIndex}`;
+        window.location.href = `${BASE_URL}/read.html?novelId=${novel.id}&chapter=${lastRead.chapterIndex}`;
     };
     
     continueSection.classList.remove('hidden');
@@ -396,7 +399,7 @@ function updateNovelDetailPage() {
     const novelId = urlParams.get('id');
     
     if (!novelId) {
-        window.location.href = '/';
+        window.location.href = `${BASE_URL}/`;
         return;
     }
     
@@ -484,7 +487,7 @@ function updateReaderPage() {
     const chapterIndex = parseInt(urlParams.get('chapter') || '0');
     
     if (!novelId || isNaN(chapterIndex)) {
-        window.location.href = '/';
+        window.location.href = `${BASE_URL}/`;
         return;
     }
     
@@ -507,7 +510,7 @@ function updateReaderPage() {
     ).join('');
     
     chapterSelect.onchange = (e) => {
-        window.location.href = `/read.html?novelId=${novelId}&chapter=${e.target.value}`;
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${e.target.value}`;
     };
     
     const prevBtn = document.getElementById('prevChapterBtn');
@@ -517,11 +520,11 @@ function updateReaderPage() {
     nextBtn.disabled = chapterIndex === novel.chapters.length - 1;
     
     prevBtn.onclick = () => {
-        window.location.href = `/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
     };
     
     nextBtn.onclick = () => {
-        window.location.href = `/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
     };
     
     loadChapterContent(novelId, chapter.file);
@@ -531,7 +534,7 @@ function updateReaderPage() {
 async function loadChapterContent(novelId, fileName) {
     showLoading();
     try {
-        const response = await fetch(`/chapters/${novelId}/${fileName}?t=${Date.now()}`);
+        const response = await fetch(`${BASE_URL}/chapters/${novelId}/${fileName}?t=${Date.now()}`);
         if (!response.ok) throw new Error('Failed to load chapter');
         const content = await response.text();
         
@@ -584,11 +587,11 @@ function setupReaderSettings() {
 
 // Navigation functions
 window.goToNovel = function(novelId) {
-    window.location.href = `/novel.html?id=${novelId}`;
+    window.location.href = `${BASE_URL}/novel.html?id=${novelId}`;
 };
 
 window.goToChapter = function(novelId, chapterIndex) {
-    window.location.href = `/read.html?novelId=${novelId}&chapter=${chapterIndex}`;
+    window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex}`;
 };
 
 // Utility functions
@@ -614,12 +617,14 @@ function highlightCurrentPage() {
     const currentPath = window.location.pathname;
     document.querySelectorAll('.nav-link').forEach(link => {
         const href = link.getAttribute('href');
-        if (href === currentPath || 
-            (currentPath === '/' && href === '/') ||
-            (currentPath === '/bookmark.html' && href === '/bookmark.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+        if (href === './' || href === './bookmark.html') {
+            if ((currentPath === '/light-novel/' || currentPath === '/light-novel/index.html') && href === './') {
+                link.classList.add('active');
+            } else if (currentPath === '/light-novel/bookmark.html' && href === './bookmark.html') {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
         }
     });
 }
