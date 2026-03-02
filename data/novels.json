@@ -1,0 +1,41 @@
+[
+    {
+        "id": "novel-1",
+        "title": "The Ex-Chef’s Recipe for Adventure",
+        "cover": "https://i.ibb.co/tT5Nbm8Z/file-0000000080747206a59a5ba41602c180.png",
+        "description": "Yuzaki, seorang koki muda dan otaku, meninggal secara tiba-tiba namun diberi kesempatan hidup kedua di dunia lain oleh seorang dewi, lengkap dengan Relic suci dan kemampuan Item Box. Di dunia baru yang penuh sihir dan petualangan, ia bertemu Alicya, seorang elf kelaparan, dan melalui masakan serta minuman nyata dari dunia manusia—seperti sup, roti, kopi, teh, smoothie, dan mocktail—mereka menjelajahi kota, membuka restoran, dan membangun kehidupan slow life yang hangat. Bersama, mereka menghadapi guild petualang, bangsawan, serta misteri Relic, sambil perlahan menumbuhkan cinta dan kebahagiaan sederhana di tengah dunia yang penuh keajaiban.",
+        "status": "Ongoing",
+        "created": "2026-02-25",
+        "chapters": [
+            { "title": "Episode 1: Relic Sang Terpilih", "file": "ep1.md" },
+            { "title": "Episode 2: Penjaga Dewi", "file": "ep2.md" },
+            { "title": "Episode 3: Awal Dari Dapur Baru", "file": "ep3.md" }
+        ]
+    },
+    {
+        "id": "novel-2",
+        "title": "Re:Velarise",
+        "cover": "https://via.placeholder.com/300x400?text=Overlord",
+        "description": "The story begins with Yggdrasil, a popular online game, quietly shutting down its servers. However, the player Momonga decides to not log out and is trapped in the game, transforming into his avatar. He begins an adventure to rule the new world.",
+        "status": "Completed",
+        "created": "2026-01-10",
+        "chapters": [
+            { "title": "Chapter 1: The Last Day", "file": "ch1.md" },
+            { "title": "Chapter 2: The Great Tomb of Nazarick", "file": "ch2.md" }
+        ]
+    },
+    {
+        "id": "novel-3",
+        "title": "Mushoku Tensei",
+        "cover": "https://via.placeholder.com/300x400?text=Mushoku+Tensei",
+        "description": "A 34-year-old shut-in dies and is reincarnated into a world of magic as Rudeus Greyrat. With memories of his past life, he uses his knowledge to become powerful and make the most of his new life.",
+        "status": "Ongoing",
+        "created": "2026-01-05",
+        "chapters": [
+            { "title": "Chapter 1: Reincarnation", "file": "ch1.md" },
+            { "title": "Chapter 2: A New Family", "file": "ch2.md" },
+            { "title": "Chapter 3: Magic Tutorial", "file": "ch3.md" },
+            { "title": "Chapter 4: The Demon Continent", "file": "ch4.md" }
+        ]
+    }
+]
