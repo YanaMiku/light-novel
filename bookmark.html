@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    
+    <!-- Base URL for subdirectory -->
+    <base href="/light-novel/">
 </head>
 <body>
     <header>
@@ -19,15 +22,15 @@
                 <h1>Light Novel Reader</h1>
             </div>
             <div class="header-controls">
-                <a href="/" class="nav-link" title="Home">
+                <a href="./" class="nav-link" title="Home">
                     <i class="fas fa-home"></i>
                     <span class="nav-text">Home</span>
                 </a>
-                <a href="/bookmark.html" class="nav-link active" title="Bookmarks">
+                <a href="./bookmark.html" class="nav-link active" title="Bookmarks">
                     <i class="fas fa-bookmark"></i>
                     <span class="nav-text">Bookmarks</span>
                 </a>
-                <a href="/" class="icon-btn" id="backBtn" title="Back to Home">
+                <a href="./" class="icon-btn" id="backBtn" title="Back to Home">
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
@@ -53,7 +56,7 @@
             <i class="fas fa-bookmark fa-4x"></i>
             <h3>No Bookmarks Yet</h3>
             <p>Start bookmarking your favorite novels to see them here!</p>
-            <a href="/" class="btn-primary">
+            <a href="./" class="btn-primary">
                 <i class="fas fa-home"></i>
                 Browse Novels
             </a>
@@ -66,6 +69,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="/assets/script.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
