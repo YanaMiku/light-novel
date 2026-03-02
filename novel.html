@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Novel Details - Light Novel Reader</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <i class="fas fa-book-open header-icon"></i>
+                <h1>Light Novel Reader</h1>
+            </div>
+            <div class="header-controls">
+                <a href="/" class="nav-link" title="Home">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="/bookmark.html" class="nav-link" title="Bookmarks">
+                    <i class="fas fa-bookmark"></i>
+                    <span class="nav-text">Bookmarks</span>
+                </a>
+                <a href="/" class="icon-btn" id="backBtn" title="Back to Home">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="loadingIndicator" class="loading hidden">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Loading novel details...</span>
+        </div>
+        
+        <div id="errorMessage" class="error hidden">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText"></span>
+        </div>
+
+        <div id="novelDetail" class="novel-detail hidden">
+            <div class="detail-header">
+                <div class="cover-wrapper cover-9-16">
+                    <div class="skeleton cover-skeleton"></div>
+                    <img id="novelCover" class="detail-cover" src="" alt="Cover" loading="lazy">
+                    <button class="card-bookmark-btn" id="detailBookmarkBtn" title="Bookmark">
+                        <i class="far fa-bookmark"></i>
+                    </button>
+                </div>
+                <div class="detail-info">
+                    <h2 id="novelTitle"></h2>
+                    <div class="detail-meta">
+                        <span class="status-badge" id="novelStatus"></span>
+                        <span id="chapterCount">
+                            <i class="fas fa-file-lines"></i>
+                            <span></span>
+                        </span>
+                    </div>
+                    <p id="novelDescription" class="novel-description"></p>
+                </div>
+            </div>
+
+            <div class="chapters-section">
+                <h3>
+                    <i class="fas fa-list-ul"></i>
+                    Chapters
+                </h3>
+                
+                <div class="chapter-controls">
+                    <div class="chapter-select-wrapper">
+                        <i class="fas fa-chevron-down select-icon"></i>
+                        <select id="chapterSelect" class="chapter-select">
+                            <option value="">Quick jump to chapter...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="chapterList" class="chapter-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <button id="scrollToTopBtn" class="scroll-top hidden" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="/assets/script.js"></script>
+</body>
+</html>
