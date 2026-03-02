@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Reader - Light Novel Reader</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <i class="fas fa-book-open header-icon"></i>
+                <h1>Light Novel Reader</h1>
+            </div>
+            <div class="header-controls">
+                <a href="/" class="nav-link" title="Home">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="/bookmark.html" class="nav-link" title="Bookmarks">
+                    <i class="fas fa-bookmark"></i>
+                    <span class="nav-text">Bookmarks</span>
+                </a>
+                <button class="icon-btn" id="toggleToolbarBtn" title="Toggle Toolbar">
+                    <i class="fas fa-paint-brush"></i>
+                </button>
+                <a href="javascript:history.back()" class="icon-btn" id="backToNovelBtn" title="Back">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container reader-container">
+        <div id="readerToolbar" class="reader-toolbar">
+            <div class="toolbar-group">
+                <i class="fas fa-font"></i>
+                <select id="fontFamilySelect">
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                    <option value="monospace">Monospace</option>
+                </select>
+            </div>
+            <div class="toolbar-group">
+                <i class="fas fa-text-height"></i>
+                <input type="range" id="fontSizeSlider" min="12" max="32" value="18">
+                <span id="fontSizeValue">18px</span>
+            </div>
+        </div>
+
+        <div class="reader-header">
+            <h2 id="novelTitle"></h2>
+            <h3 id="chapterTitle"></h3>
+        </div>
+
+        <div class="reader-navigation">
+            <button id="prevChapterBtn" class="nav-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+                <span class="btn-text">Previous</span>
+            </button>
+            
+            <div class="chapter-select-wrapper">
+                <i class="fas fa-chevron-down select-icon"></i>
+                <select id="chapterSelect" class="chapter-select">
+                    <option value="">Select chapter...</option>
+                </select>
+            </div>
+            
+            <button id="nextChapterBtn" class="nav-btn" disabled>
+                <span class="btn-text">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="loadingIndicator" class="loading hidden">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Loading chapter...</span>
+        </div>
+        
+        <div id="errorMessage" class="error hidden">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText"></span>
+        </div>
+
+        <div id="chapterContent" class="chapter-content"></div>
+
+        <div class="reader-footer">
+            <button class="scroll-top-footer" id="scrollToTopBtn" title="Back to top">
+                <i class="fas fa-arrow-up"></i>
+                Back to Top
+            </button>
+        </div>
+    </main>
+
+    <script src="/assets/script.js"></script>
+</body>
+</html>
