@@ -1,526 +1,689 @@
-# The Ex-Chef Blessed by the Goddess
-## Season 1 – Episode 1: Relic Sang Terpilih
+# Bab 1: Apel dan Pertemuan di Hutan
 
 ---
 
-Peringatan: Ini adalah karya fiksi. Kesamaan nama, tokoh, atau peristiwa adalah kebetulan belaka.
+Hujan gerimis mengguyur jalanan kota saat Yuzaki melangkah keluar dari restoran ayahnya. Jam menunjukkan pukul sebelas malam, dan seperti biasa, ia menjadi orang terakhir yang menutup tempat itu. Di tangannya, ponsel menyala terang dengan layar menampilkan otome game yang sedang ia mainkan.
+
+"Karakter Lilly rute apa ya ini..." gumamnya sambil berjalan menuju perempatan.
+
+Umur tiga puluh tahun, jomblo, kerja di restoran keluarga. Itu ringkasan hidupnya. Bukan kehidupan yang buruk, tapi juga bukan yang ia impikan saat lulus sekolah dulu.
+
+Saat lampu merah menyala, Yuzaki berhenti. Matanya tetap tertuju pada layar ponsel.
+
+Bruk.
+
+Suara benturan keras. Cahaya lampu truk yang menyilaukan. Lalu gelap.
 
 ---
 
-### Prolog: Pertemuan dengan Sang Dewi
+"Sialan, padahal gacha minggu ini lagi apes banget."
 
-Rasanya seperti baru saja memejamkan mata.
+Yuzaki membuka mata. Atau setidaknya ia mencoba. Yang terlihat bukan langit-langit kamarnya, juga bukan rumah sakit. Tapi ruang kosong berwarna putih bersih tanpa batas.
 
-Atau mungkin memang begitu yang terjadi. Satu detik aku masih menyeberang jalan setelah membeli stok bahan untuk restoran ayah—truk pengiriman melaju kencang, suara klakson memekakkan telinga, dorongan keras dari seseorang yang mungkin menyelamatkanku atau justru mendorongku lebih cepat menuju kematian. Aku tidak tahu. Yang kuingat hanya tubuhku terlempar, rasa sakit yang menusuk tulang, lalu... gelap.
+"Selamat datang, Yuzaki."
 
-Sekarang? Sekarang aku berdiri di ruang hampa berwarna putih susu. Seperti berada di dalam mimpi yang terlalu terang.
+Seorang wanita dengan gaun panjang putih berdiri di hadapannya. Rambut peraknya berkilau meski tidak ada sumber cahaya. Tubuhnya tembus pandang seperti kabut, tapi wajahnya jelas.
 
-"Maaf sekali sudah membuatmu menunggu."
+Dewi. Yuzaki langsung menyadarinya. Setelah bertahun-tahun membaca manga dan menonton anime, ia tahu persis situasi macam apa ini.
 
-Suara itu lembut. Selembut sutra yang mengalir di atas kulit. Aku menoleh dan...
+"Aku mati, ya?"
 
-Di sana, berdiri sesosok wanita dengan cahaya lembut menyelimuti seluruh tubuhnya. Gaun putih panjang menjuntai, rambut perak sepanjang pinggang berkilauan, dan sayap—sayap kecil berwarna pelangi yang mengepak-ngepak lambat di belakang punggungnya. Wajahnya? Cantik. Terlalu cantik untuk manusia biasa. Tapi ada sesuatu yang hangat dari senyumnya, sesuatu yang membuatku tidak merasa takut meskipun sadar bahwa aku baru saja mati.
+"Kecelakaan di perempatan." Dewi itu tersenyum tipis. "Tapi jangan khawatir. Aku akan memberimu kesempatan kedua."
 
-"Kau... Dewi?" Suaraku serak. Aneh, karena di sini tubuhku terasa utuh. Tidak sakit sama sekali.
+Yuzaki menghela napas. "Ada syaratnya? Biasanya begitu."
 
-"Iya. Tepat sekali." Dewi itu tersenyum lebih lebar. "Maaf, seharusnya aku menjemputmu lebih awal. Tapi aku sedang sibuk mengurus dunia baru—eh, maksudku, ada sedikit urusan."
+"Tidak ada syarat besar." Dewi mengangkat tangannya. Partikel cahaya berkumpul di telapak tangannya. "Aku hanya akan memberimu beberapa kemampuan agar kamu bisa hidup di sana. Tubuh baru, usia dua puluh tahun. Sisanya terserah kamu."
 
-*Aku baru saja mati dan Dewi ini bilang dia sibuk?*
+Sebuah jendela transparan muncul di depan Yuzaki.
 
-Tapi sebelum aku bisa memproses kekonyolan situasi ini, Dewi itu melayang mendekat. Matanya yang bersinar lembut menatapku dengan intensitas yang tidak biasa.
+**[Status Window telah diaktifkan]**
+**[Skill: Item Box (Unlimited Storage, Time Freeze) telah diberikan]**
+**[Relic Khusus telah diberikan]**
+**[Sistem Power telah diaktifkan. Stat akan meningkat berdasarkan makanan yang dijual]**
 
-"Yuzaki, benar?"
+Yuzaki membaca satu per satu. Item Box tanpa batas. Makanan tidak basi. Sistem yang naik level dari berjualan makanan.
 
-Aku mengangguk.
+"Sepertinya kamu memang ditakdirkan jadi koki di sana." Dewi tersenyum. "Gunakan Relic itu saat dalam kesulitan. Ini mungkin bisa membantumu."
 
-"Dari kecil kamu suka masak, ya? Suka bantu ayah di restoran. Suka main game, suka nonton anime. Tapi—" Dia berhenti, matanya sedikit berkaca-kaca. "Kamu belum sempat mewujudkan mimpimu sendiri, kan? Membuka restoran, memasak untuk orang-orang yang lapar, membuat mereka bahagia?"
+Sebuah liontin kecil melayang ke arahnya. Bentuknya sederhana, lingkaran perak dengan ukiran rumit.
 
-Aku terdiam. Dadanya terasa sesak. Iya. Itu mimpiku. Satu-satunya mimpi yang tidak pernah sempat kukejar karena sibuk membantu ayah dan hidup pas-pasan.
+"Coba kutebak," Yuzaki menangkapnya, "ini barang langka yang bikin orang-orang kaget, kan?"
 
-"Dunia itu... kejam padamu, Yuzaki." Dewi menghela napas. "Kecelakaan itu seharusnya bisa dihindari. Tapi ada sedikit campur tangan yang tidak seharusnya terjadi. Jadi... ini permintaan maafku."
+Dewi tidak menjawab. Ia hanya tertawa kecil.
 
-Dia menjentikkan jari.
-
-Dan tiba-tiba, di depan mataku, muncul layar transparan berwarna biru. Persis seperti di game-game yang biasa kumainkan.
-
----
-
-**[Status Window - Yuzaki]**
-- **Nama:** Yuzaki
-- **Usia:** 27 tahun
-- **Titel:** Penjaga Dewi (Belum Aktif)
-- **Skill:**
-  - Item Box (Unlimited | Time-Freeze)
-  - Status Window
-  - Cooking (Max)
-- **Equipment:**
-  - Relic Milik Dewi
+Cahaya putih mulai menyelimuti Yuzaki. Tubuhnya terasa ringan, melayang, lalu—
 
 ---
 
-"Ini..." Aku menatap layar itu dengan mata terbelalak.
+Dedaunan.
 
-"Itu skill pertamamu," kata Dewi. "Item Box dengan ruang tak terbatas dan kemampuan menghentikan waktu di dalamnya. Apa pun yang kamu simpan tidak akan pernah basi, tidak akan pernah berubah. Kamu juga punya akses ke Status Window milikmu dan orang lain. Dan skill memasakmu... aku sudah set ke maksimum. Bukan berarti kamu langsung jadi dewa masak, tapi bakat dan pengetahuanmu akan berkembang lebih cepat dari yang lain."
+Bau tanah basah.
 
-Aku masih menatap layar itu. Tidak percaya.
+Suara serangga.
 
-"Lalu... Relic?" tanyaku.
+Yuzaki membuka mata dan melihat kanopi pohon lebat di atasnya. Ia berbaring di atas lumut, diterangi sinar matahari yang menembus celah dedaunan.
 
-Dewi mengulurkan tangan. Di telapaknya, muncul sebuah benda kecil berkilau. Bentuknya seperti medali perak dengan ukiran rumit—pohon, matahari, dan sesuatu yang mirip buku.
+"Beneran isekai."
 
-"Ini adalah Relic suci. Benda ini akan menjadi pelindungmu. Jika kamu benar-benar dalam kesulitan, tunjukkan relic ini pada orang-orang. Mungkin... mungkin ini akan membantumu."
+Ia bangkit dan menepuk-nepuk tubuhnya. Lebih muda. Lebih bugar. Tidak ada rasa sakit seperti setelah seharian bekerja.
 
-Dia menatapku lekat-lekat.
+"Status."
 
-"Aku tidak bisa memberimu kekuatan tempur yang luar biasa, Yuzaki. Itu bukan jalannya. Tapi aku bisa memberimu kesempatan kedua. Dunia tempatmu akan pergi adalah dunia yang keras. Tapi juga indah. Ada elf, dwarf, beastmen, petualang, monster, dan... makanan yang belum pernah mereka rasakan sebelumnya."
+Jendela transparan muncul lagi.
 
-*Makanan.*
+**[Nama: Yuzaki]**
+**[Usia: 20]**
+**[Level: 1]**
+**[EXP: 0/100]**
+**[HP: 100/100]**
+**[MP: 0/50]**
+**[Elemen Sihir: Tidak Ada]**
+**[Skill: Item Box, Sistem Power]**
 
-Kata itu membuat sesuatu hangat menjalar di dadaku.
+MP nol. Elemen tidak ada. Level 1. Yuzaki tersenyum pahit. Isekai stereotype banget.
 
-"Kau mau?" tanya Dewi.
+Dari celah pohon, ia melihat langit biru. Hutan ini lebat, tapi tidak tampak terlalu berbahaya. Setidaknya untuk sekarang.
 
-Aku tersenyum. Untuk pertama kalinya sejak sadar di tempat aneh ini, aku merasa tenang.
-
-"Aku mau."
-
----
-
-### Chapter 1: Hutan yang Asing
-
-Aku terbangun dengan sensasi aneh—rumput di bawah pipi, angin sepoi membelai rambut, dan bau... bau tanah basah setelah hujan. Bukan bau rumah sakit. Bukan bau aspal panas.
-
-Aku membuka mata.
-
-Hijau.
-
-Di atas kepalaku, kanopi dedaunan yang begitu lebat sampai sinar matahari hanya mampu menembus dalam berkas-berkas tipis. Pohon-pohon raksasa menjulang di sekelilingku, dengan akar yang keluar dari tanah seperti ular raksasa. Suara burung aneh bersahutan, dan di kejauhan, kudengar suara air mengalir.
-
-*Aku benar-benar di dunia lain.*
-
-Aku duduk perlahan. Tubuhku terasa ringan. Mungkin karena ini tubuh baru, atau mungkin karena skill yang diberikan Dewi membuatku lebih bugar. Aku menepuk-nepuk tubuhku—masih utuh, masih sama.
-
-Lalu kuingat.
+Yuzaki berjalan tanpa tujuan. Mencoba memahami lingkungan barunya. Pohon-pohon tinggi dengan bentuk asing. Suara burung yang tidak ia kenal. Sesekali ia melihat bunga warna-warni.
 
 "Item Box."
 
-Aku berkonsentrasi, membayangkan sebuah ruang kosong di dalam pikiranku. Dan tiba-tiba, seperti membuka aplikasi di ponsel, sebuah visualisasi muncul di kepalaku. Ruang hitam tak berujung, dengan beberapa benda melayang di dalamnya.
+Sebuah portal kecil terbuka di udara. Yuzaki menyodorkan tangannya ke dalam. Isinya... beberapa apel merah segar, roti keras, sebotol air, dan pisau dapur.
 
-*Apel. Sepuluh buah apel merah segar yang kubeli sebelum kecelakaan itu.*
+"Setidaknya Dewi kasih bekal."
 
-Aku mengulurkan tangan, fokus pada satu apel, dan—
+Ia mengambil satu apel dan menggigitnya. Manis. Renyah. Apel ini sama seperti apel di dunia asalnya.
 
-*Puff.*
+Yuzaki terus berjalan. Satu jam. Dua jam. Hutan ini luas. Terlalu luas.
 
-Sebuah apel merah mengkilap jatuh ke telapak tanganku. Masih segar. Masih dingin seperti baru keluar dari lemari pendingin.
+Sampai ia mencium sesuatu.
 
-Aku tersenyum lebar. *Ini... ini keren banget.*
+Bau tidak sedap. Samar, tapi ada.
 
-Tapi senyumku segera sirna ketika perutku menggeram keras. Aku lapar. Dan haus. Dan aku sama sekali tidak tahu di mana aku berada.
-
-Aku bangkit, membersihkan rumput dari pakaian—eh? Aku melihat ke bawah. Bajuku sudah berubah. Kini aku mengenakan tunik linen cokelat sederhana, celana panjang kain, dan sepatu bot kulit. Bukan pakaian yang kukenakan saat kecelakaan. Dewi pasti sudah menyiapkannya.
-
-"Baiklah," aku bergumam pada diriku sendiri, mencoba menenangkan saraf yang bergetar. "Langkah pertama: cari sumber air. Langkah kedua: cari jalan keluar hutan. Langkah ketiga: cari makanan yang benar-benar aman dimakan. Langkah keempat..."
-
-Aku berhenti.
-
-Langkah keempat adalah bertahan hidup di dunia yang tidak kukenal sama sekali.
-
-Aku berjalan. Dan berjalan. Dan berjalan.
-
-Hutan ini lebih luas dari yang kukira. Setiap pohon terlihat mirip, dan aku mulai khawatir aku hanya berputar-putar. Tapi untungnya, suara air tadi semakin jelas. Aku mengikuti suara itu, melewati semak-semak, menghindari akar pohon yang menjulur, dan—
-
-Air terjun kecil. Kolam jernih di bawahnya. Surga kecil di tengah hutan.
-
-Aku segera berlutut di tepi kolam, menciduk air dengan tangan, meminumnya. Dingin, segar, sedikit manis. Air murni yang tidak mungkin kudapatkan di kota. Setelah puas minum, aku duduk di atas batu besar, menghela napas panjang.
-
-*Sekarang bagaimana?*
-
-Aku mengeluarkan apel lain dari Item Box. Satu untuk makan siang. Tapi sebelum aku menggigitnya—
-
-"Aaa..."
-
-Suara itu.
-
-Lirih. Lemah. Tapi jelas—itu suara manusia.
-
-Atau setidaknya, suara makhluk yang bisa berbicara.
-
-Aku menoleh ke arah suara. Di balik semak-semak, tidak jauh dari tempatku duduk, ada sesosok tubuh tergeletak di bawah pohon besar.
+Yuzaki mengikuti arah bau itu, mendorong dedaunan lebat, hingga akhirnya menemukan sumbernya.
 
 ---
 
-### Scene Illustration 1: Pertemuan di Hutan Lebat
-
-*Ilustrasi: Hutan lebat dengan pepohonan raksasa. Sinar matahari menembus celah dedaunan, menciptakan berkas-berkas cahaya emas. Di tengah bayangan, Yuzaki—dengan tunik cokelat sederhana dan rambut acak-acakan—berlutut di depan sesosok elf wanita yang terbaring lemah di antara akar pohon. Rambut perak panjang wanita itu berserakan di tanah, wajahnya pucat pasi, matanya setengah terbuka menatap apel merah di tangan Yuzaki. Kontras warna: hijau gelap hutan, merah apel, dan cahaya keemasan yang menyinari mereka berdua, menciptakan atmosfer magis yang mengharukan.*
+(Scene Gambar: Seorang elf perempuan dengan rambut pirang panjang tergeletak di antara akar pohon besar. Gaunnya koyak di beberapa tempat. Wajahnya pucat pasi, matanya setengah tertutup. Tubuhnya kurus, tampak tidak makan berhari-hari.)
 
 ---
 
-Darahku seolah membeku.
+Yuzaki tertegun.
 
 Elf.
 
-Itu adalah elf.
+Bukan cosplay. Bukan gambar di layar. Tapi elf sungguhan. Telinga panjang runcing. Wajah cantik dengan tulang halus. Rambut pirang yang kusut tapi tetap berkilau.
 
-Bukan cosplay, bukan akting—ini betulan elf. Telinga runcing panjang menjulur dari rambut perak panjang yang kini kusut dan kotor. Kulitnya putih pucat, hampir transparan, dan tubuhnya sangat kurus. Terlalu kurus. Pipinya cekung, matanya sayu, dan bibirnya pecah-pecah.
+Untuk pertama kalinya dalam tiga puluh tahun hidupnya, Yuzaki merasa jantungnya melompat. Ini seperti karakter game favoritnya menjadi nyata.
 
-Dia sekarat.
+Elf itu membuka mata. Sorot matanya kosong, lemah. Tapi saat melihat Yuzaki, ada sedikit ketakutan.
 
-Aku tahu itu. Sebagai koki yang sering melihat orang kelaparan di jalanan kota, aku tahu tanda-tandanya. Tubuh ini sudah tidak makan mungkin berhari-hari. Berminggu-minggu?
+Yuzaki buru-buru mendekat. Ia berjongkok di sampingnya.
 
-"A-apa..." Suaranya serak. Matanya yang sayu menatap sesuatu di tanganku.
+"Anu... apa kamu baik-baik saja?"
 
-Apel.
+Suaranya canggung. Tapi elf itu menatapnya dengan mata sayu.
 
-Dia menatap apel di tanganku.
+"Aku... lapar." Suaranya nyaris berbisik. "Tolong... beri aku sedikit makanan."
 
-Aku tidak berpikir panjang. Aku langsung berlutut di sampingnya, meraih kepala elf itu dengan hati-hati, dan mendekatkan apel ke mulutnya.
+Yuzaki langsung teringat Item Box-nya. Ia membuka portal dan merogoh ke dalam. Jarinya menyentuh apel.
 
-"Makan," kataku. "Ini aman. Makanlah."
+"Ini." Ia mengeluarkan buah merah itu. "Makanlah."
 
-Dia menatapku dengan mata yang berkaca-kaca. Ketakutan? Keraguan? Tapi kemudian, mungkin karena tubuhnya sudah terlalu lemah untuk menolak, dia membuka mulut sedikit.
-
-Aku menekan apel perlahan. Sari buahnya menetes ke bibirnya yang pecah-pecah.
-
-Dia menggigit.
-
-Satu gigitan kecil.
-
-Dan di saat itu juga, sesuatu berubah di matanya.
-
-Dia mengunyah. Perlahan. Air mata mulai mengalir di pipinya.
-
-"A-angggh..." Suaranya bergetar. "Ini... ini apa?"
-
-"Apel," jawabku. "Ini apel."
-
-Dia menelan. Lalu menggigit lagi. Lebih besar kali ini. Dan lagi. Dan lagi. Tangannya yang lemah meraih apel itu, berusaha memegangnya sendiri. Aku membantunya. Dalam hitungan detik, setengah apel habis.
-
-"Pelan-pelan," aku memperingatkan. "Jangan terlalu cepat. Tubuhmu akan kaget."
-
-Tapi dia tidak peduli. Dia terus makan sampai apel itu hanya tinggal inti. Lalu dia menatapku lagi. Menatap tanganku yang masih memegang satu apel lagi.
-
-Aku tersenyum. "Masih mau?"
-
-Dia mengangguk lemah.
-
-Aku memberinya satu lagi. Dan kali ini, dia makan sedikit lebih pelan. Matanya yang tadinya sayu mulai sedikit cerah. Pipinya yang pucat mulai merona.
-
-Setelah apel kedua habis, dia tertidur. Atau pingsan. Atau mungkin tubuhnya hanya butuh istirahat setelah sekian lama kelaparan.
-
-Aku duduk di sampingnya, memandangi wajahnya yang tidur.
-
-*Elf. Elf beneran.*
-
-*Dan dia hampir mati kelaparan.*
-
-*Di dunia ini.*
-
-Aku menghela napas panjang. Langit di atas mulai sedikit gelap. Senja. Aku harus mencari tempat berlindung sebelum malam tiba. Tapi aku tidak bisa meninggalkan elf ini sendirian.
-
-Keputusan sederhana.
-
-Aku menggendongnya—tubuhnya sangat ringan, terlalu ringan—dan mencari tempat yang lebih aman. Di dekat air terjun tadi, ada ceruk batu yang cukup besar. Mungkin bekas sarang binatang, tapi sekarang kosong. Aku membaringkannya di sana, mengeluarkan tunik cadangan dari Item Box? Eh, ternyata ada. Dewi memang menyiapkan beberapa pakaian. Aku menyelimutinya.
-
-Lalu aku duduk di mulut ceruk, memandangi hutan yang mulai gelap.
-
-*Hari pertama di dunia lain, dan aku sudah jadi pengasuh elf.*
-
-Aku tertawa kecil sendiri.
-
-Tapi hatiku hangat.
+(Scene Gambar: Tangan Yuzaki yang memberikan apel merah kepada Alicya. Kontras antara apel segar dan wajah pucat sang elf. Latar belakang hutan lebat.)
 
 ---
 
-### Chapter 2: Rasa Pertama
+Elf itu menerimanya dengan tangan gemetar. Ia menatap apel itu sejenak, seperti ragu, lalu menggigitnya.
 
-Dia terbangun saat malam hampir berganti pagi.
+Matanya membelalak.
 
-Aku tahu karena aku tidak bisa tidur. Terlalu banyak yang kupikirkan. Jadi ketika kudengar suara gerakan dari dalam ceruk, aku langsung menoleh.
+Gigitan kedua. Ketiga. Ia makan dengan lahap, hampir tersedak.
 
-Dia duduk, menyelimuti tubuhnya dengan tunikku, dan menatapku dengan mata lebar. Matanya... indah. Biru muda seperti danau di pegunungan, dengan sedikit kilau perak di tengahnya. Rambut peraknya kini terurai indah meskipun masih sedikit kusut. Dan telinga runcingnya bergerak-gerak kecil, seperti kucing yang waspada.
+"Pelan-pelan." Yuzaki merogoh Item Box lagi, mengeluarkan botol air. "Minum."
 
-"Kau..." Suaranya masih serak, tapi lebih jelas sekarang. "Kau manusia?"
+Elf itu minum. Warna pucat di wajahnya mulai memudar. Napasnya lebih teratur.
 
-Aku mengangguk.
+"Terima kasih." Ucapannya tulus. Matanya kini lebih jernih, menatap Yuzaki dengan rasa ingin tahu.
 
-Dia menatapku lama. Lalu tiba-tiba, dia menunduk dalam-dalam. Dahinya hampir menyentuh tanah.
+Yuzaki duduk di akar pohon di dekatnya. "Kamu kenapa sendirian di hutan? Tempat ini nggak keliatan aman buat jalan sendirian."
 
-"Terima kasih. Terima kasih banyak. Aku... aku hampir mati. Aku sudah tiga hari tidak makan. Aku tersesat di hutan ini dan tidak bisa keluar. Aku sudah pasrah. Lalu kau datang dan... dan..."
+Elf itu menunduk. Tangannya meremas ujung gaunnya yang koyak.
 
-Dia menangis.
+"Aku... diculik bandit." Suaranya pelan. "Mereka menangkapku saat aku keluar dari kota. Tapi kemarin malam, mereka lengah. Aku lari."
 
-Aku tidak tahu harus berbuat apa. Aku hanya duduk di sampingnya, diam, membiarkannya menangis sampai air matanya kering.
+Yuzaki mengangguk pelan. Isekai fantasy memang penuh kejahatan. Di game, bandit selalu jadi musuh early game.
 
-"A-aku Alicya," katanya akhirnya, terisak-isak. "Aku dari Desa Sylvan di sebelah barat. Aku sedang dalam perjalanan ke kota untuk mencari bahan ramuan, tapi... tapi aku tersesat. Aku tidak tahu jalan pulang."
+"Dari mana asalmu?"
 
-"Aku Yuzaki," jawabku. "Aku... sebenarnya juga baru sampai di dunia ini. Kemarin."
+"Vaelthoria." Elf itu melihat ke arah utara. "Tapi aku tidak tahu jalan pulang. Hutan ini terlalu luas."
 
-Alicya mengangkat wajahnya. Bingung. "Baru sampai?"
+Yuzaki menghela napas. Ia menatap langit melalui celah dedaunan. Sore mulai tiba.
 
-"Panjang ceritanya." Aku tersenyum canggung. "Yang penting sekarang, kau sudah selamat. Tapi kau pasti masih lapar, kan?"
+"Aku Yuzaki." Ia menunjuk dirinya sendiri. "Kamu?"
 
-Dia mengangguk pelan, agak malu.
+"Alicya."
 
-Aku berpikir. Apel mungkin cukup untuk sementara, tapi dia butuh makanan yang lebih bergizi. Lebih mengenyangkan. Dan aku butuh sesuatu untuk menghangatkan tubuhnya.
+"Alicya." Yuzaki mencoba mengucapkannya. "Dengar, aku juga baru pertama kali di sini. Aku nggak tahu apa-apa tentang dunia ini."
 
-Lalu aku ingat.
+Alicya menatapnya bingung.
 
-Item Box.
+"Tapi aku punya rencana." Yuzaki melanjutkan. "Aku ingin berkeliling, melihat dunia ini, dan membuat makanan. Banyak makanan." Ia tersenyum. "Kamu mau bantu aku? Jadi pemandu, gitu. Ceritain tentang dunia ini."
 
-*Apa lagi yang ada di dalamnya selain apel dan pakaian?*
+Alicya terdiam. Matanya menatap Yuzaki lekat-lekat.
 
-Aku membuka ruang Item Box di kepalaku dan mulai memeriksa. Dan mataku membelalak.
+"Kenapa kau membantuku?"
 
-*Tepung terigu. Mentega. Gula. Garam. Kayu manis bubuk. Peralatan masak sederhana—wajan, panci, pisau, mangkuk. Bahkan kompor portabel kecil dengan tabung gas?*
+Pertanyaan sederhana. Tapi Yuzaki butuh waktu sebentar untuk menjawab.
 
-Dewi benar-benar menyiapkan segalanya.
+"Buatku..." Ia menggaruk pipinya yang tidak gatal. "Elf seperti kamu itu makhluk yang suci, bersih, indah. Kalau kamu kelaparan dan kotor, image-ku tentang ras elf bakal rusak."
 
-"Kau bisa memasak?" tanya Alicya, menatapku yang tiba-tiba melamun.
+Alicya membelalak. Lalu tiba-tiba ia tertawa kecil. Tawa pertama sejak mereka bertemu.
 
-Aku tersenyum. Untuk pertama kalinya sejak tiba di dunia ini, aku merasa percaya diri.
+"Kau aneh."
 
-"Aku koki."
+"Mungkin."
 
----
+Suasana sedikit lebih ringan. Yuzaki berdiri dan mengulurkan tangan.
 
-Matahari mulai terbit saat aku menyiapkan "dapur dadakan" di mulut ceruk. Kompor portabel, wajan, mangkuk, dan bahan-bahan berjejer rapi di atas batu datar. Alicya duduk di dekat api unggun kecil yang kubuat, matanya berbinar-binar melihat persiapanku.
+"Aku mau bikin apple pie. Kamu pasti butuh makanan lebih dari sekadar apel."
 
-"Apa yang akan kau buat?" tanyanya.
+Alicya menerima uluran tangannya. "Apple pie?"
 
-"Apple pie," jawabku.
-
-Dia mengerutkan kening. "Pie? Apa itu?"
-
-Aku tersenyum. "Kau akan lihat."
+"Makanan dari dunia asalku." Yuzaki melihat sekeliling. "Tapi butuh api. Ada tempat yang aman buat bikin api?"
 
 ---
 
-### Scene Illustration 2: Membuat Apple Pie di Hutan
-
-*Ilustrasi: Ceruk batu di tepi hutan, dengan pancaran sinar matahari pagi yang lembut. Yuzaki, dengan lengan baju digulung, sedang menguleni adonan di atas batu datar. Tepung terigu berhamburan ringan di udara. Di sampingnya, Alicya duduk dengan dagu bertumpu pada lutut, matanya yang biru berbinar-binar memperhatikan setiap gerakan Yuzaki dengan penuh rasa ingin tahu. Di belakang mereka, hutan lebat mulai tersinari emas. Suasana hangat dan damai terpancar dari ilustrasi ini, kontras dengan kegelapan malam sebelumnya.*
+(Scene Gambar: Yuzaki sedang membuat adonan di atas batu datar. Di sampingnya, api unggun kecil menyala. Alicya duduk memeluk lutut, memperhatikan dengan rasa ingin tahu.)
 
 ---
 
-Aku bekerja dengan ritme yang sudah kuhafal di luar kepala.
+Yuzaki menemukan tempat terbuka kecil di dekat sungai. Cukup aman, jauh dari semak-semak lebat. Ia mengumpulkan batu untuk lingkaran api, lalu ranting kering.
 
-Pertama, kulit pie. Tepung dan garam diayak, mentega dingin dipotong kecil-kecil lalu digosok dengan ujung jari sampai adonan berbutir seperti pasir. Air es ditambahkan sedikit demi sedikit, diaduk cepat, lalu adonan dibungkus dan didinginkan sebentar. Aku menggunakan dinginnya pagi hari sebagai pengganti kulkas.
+"Item Box."
 
-Kedua, isian. Apel dikupas, dibuang bijinya, dipotong tipis-tipis. Lalu ditumis sebentar dengan mentega, gula, dan kayu manis sampai layu dan harum. Aroma kayu manis memenuhi udara pagi, bercampur dengan bau tanah basah dan dedaunan.
+Ia mengeluarkan peralatan dapur sederhana. Mangkok, penggilas, loyang tipis yang bisa ia tekuk. Untung Dewi memberinya perlengkapan dasar.
 
-Alicya menghirup dalam-dalam. Matanya terpejam.
+"Apa itu?" Alicya menunjuk mangkok.
 
-"Ini... harum sekali," bisiknya. "Aku belum pernah mencium bau seperti ini."
+"Tempat buat campur adonan."
 
-Aku tersenyum. "Ini baru awal."
+Yuzaki bekerja cepat. Ia sudah terbiasa dengan rutinitas dapur. Tangan otomatis bergerak tanpa perlu banyak berpikir.
 
-Adonan kulit pie digilas, dialasi di wajan, isian apel dituang, lalu tutup adonan di atasnya dengan sedikit lubang di tengah untuk uap. Olesan kuning telur di permukaan, lalu wajan ditutup dan dipanaskan di atas kompor dengan api kecil.
+Tepung. Mentega. Garam. Air es. Semua dari Item Box. Dewi memberinya bahan-bahan dasar yang cukup.
 
-"Tunggu sebentar," kataku.
+Ia menguleni adonan. Alicya memperhatikan dengan serius.
 
-Alicya menunggu dengan sabar. Tapi matanya tidak lepas dari wajan itu. Sesekali dia mencium aroma yang semakin kuat, dan wajahnya berseri-seri.
+"Di dunia mana kau berasal?"
 
-Tiga puluh menit kemudian, aku membuka tutup wajan.
+"Dunia lain." Yuzaki menjawab jujur. Tapi ia memilih tidak menjelaskan detail. "Tempat dengan banyak makanan enak."
+
+"Apel ini juga dari duniamu?"
+
+"Iya."
+
+Alicya memegang apel yang belum dimakan. Ia menciumnya. "Buah ini manis. Di sini, apel kadang asam. Tergantung musim."
+
+Yuzaki mengangguk. Sambil menunggu adonan istirahat, ia mengupas apel dan memotongnya tipis-tipis.
+
+Gula. Kayu manis. Perasan lemon. Semua dari Item Box. Dewi benar-benar memberinya bekal lengkap.
+
+"Kau mencampur banyak hal." Alicya mendekat, mencium aroma kayu manis. "Aroma ini... aku belum pernah."
+
+"Kayu manis." Yuzaki mencampur apel dengan bumbu. "Buat rasa lebih dalam."
+
+Ia menggelar adonan, meletakkan isian, lalu menutupnya dengan lapisan atas. Jari-jarinya membentuk pola diagonal di permukaan pie.
+
+"Aku ingin mencobanya sekarang." Alicya menatap pie mentah itu.
+
+"Nanti. Harus dipanggang dulu."
+
+Yuzaki menyiapkan api. Bukan tugas mudah memanggang dengan api unggun, tapi ia terbiasa. Restoran ayahnya dulu pakai oven arang untuk beberapa menu.
+
+Ia meletakkan pie di loyang, lalu menaruhnya di atas batu panas di dekat api. Memutar-mutar agar panas merata.
+
+Alicya duduk di sampingnya. Api unggun menerangi wajahnya yang mulai memulihkan warna.
+
+"Bandit itu... mereka tidak membawamu ke tempat lain?"
+
+"Entah." Alicya menggenggam tangannya sendiri. "Mereka bilang mau menjualku. Tapi aku lari sebelum sampai."
+
+Yuzaki tidak bertanya lebih. Topik yang tidak nyaman.
+
+"Besok kita cari jalan ke kota." Ia membalik pie. "Kota terdekat, di mana?"
+
+"Kalau dari sini... mungkin Alecross." Alicya menunjuk arah. "Tapi jalannya jauh."
+
+"Berapa hari?"
+
+"Mungkin dua hari kalau jalan kaki."
+
+Yuzaki mengangguk. Pie mulai mengeluarkan aroma manis. Mentega dan apel dan kayu manis bercampur jadi satu.
+
+Alicya mencium hidungnya. "Wanginya..."
+
+"Bentar lagi."
 
 ---
 
-### Scene Illustration 3: Apple Pie Pertama
-
-*Ilustrasi: Close-up wajan dengan apple pie yang baru matang. Permukaan pie berwarna cokelat keemasan sempurna, dengan sedikit retakan di mana isian apel mendidih keluar. Uap mengepul membawa aroma manis dan kayu manis. Di latar belakang, wajah Alicya terlihat setengah badan, matanya melebar, mulutnya sedikit terbuka, ekspresi takjub murni seperti anak kecil melihat keajaiban pertama dalam hidupnya. Cahaya hangat dari kompor menerangi wajahnya dari bawah, menciptakan efek dramatis yang manis.*
+(Scene Gambar: Sepotong apple pie berwarna coklat keemasan di atas daun besar. Uap mengepul tipis. Di latar belakang, api unggun menyala redup.)
 
 ---
 
-"Ini... ini bisa dimakan?" tanya Alicya dengan suara bergetar.
+Yuzaki mengangkat pie dari api. Kulitnya kecoklatan, renyah. Isian di dalamnya masih panas.
 
-Aku tertawa. "Tentu. Tapi hati-hati, masih panas."
+Ia memotong dengan pisau, meletakkan satu potong di daun lebar, lalu memberikannya pada Alicya.
 
-Aku memotong pie itu menjadi empat bagian. Isian apel di dalamnya masih mendidih perlahan, bercampur dengan saus karamel dari gula dan mentega. Kulit pie renyah berlapis-lapis, dengan pinggiran yang sedikit gosong—gosong yang sempurna.
+"Hati-hati, panas."
 
-Aku menyajikan satu potong di atas daun besar sebagai piring darurat. Lalu mengulurkannya pada Alicya.
+Alicya menerimanya dengan kedua tangan. Ia meniup pelan, lalu menggigit ujungnya.
+
+Matanya membelalak lagi. Tapi kali ini berbeda. Bukan karena lapar, tapi karena rasa.
+
+Renyahnya kulit pie. Lembutnya apel di dalam. Manis yang pas dengan sedikit asam. Kayu manis yang hangat.
+
+"Apa ini..." Alicya menggigit lagi. Lebih besar. "Enak. Enak sekali."
+
+Yuzaki tersenyum. "Apple pie. Buatan pertama di dunia ini."
+
+Alicya makan dengan lahap. Tangannya sedikit gemetar karena terlalu bersemangat. Ia tidak pernah merasakan makanan seperti ini. Di Vaelthoria, makanan biasanya hanya roti keras, sup sayur, atau daging panggang tanpa bumbu.
+
+"Ini... hangat." Alicya menelan. "Dari dalam."
+
+"Emang pie biasanya hangat." Yuzaki mengambil potongan untuk dirinya sendiri. "Tapi lebih enak kalau pakai es krim di atasnya."
+
+"Es krim?"
+
+"Makanan dingin manis. Susu dibekuin sambil diaduk."
+
+Alicya menatapnya dengan ekspresi tidak percaya. "Kau bisa membuat makanan seperti ini?"
+
+"Nanti aja. Besok kita cari jalan ke kota dulu." Yuzaki menggigit pie-nya. Manis, hangat, seperti di rumah. "Tapi sebelum itu, ceritain tentang dunia ini."
+
+Alicya mengangguk. Sambil menikmati pie, ia mulai bercerita.
+
+Tentang Vaelthoria, kota elf di utara. Tentang Alecross, kota manusia terdekat. Tentang guild petualang, sistem peringkat, dan uang.
+
+"100 tembaga jadi 1 perak. 100 perak jadi 1 gold. 100 gold jadi 1 platinum." Alicya menjelaskan.
+
+Yuzaki mengangguk. Sistem standar fantasy. Gampang diingat.
+
+"Mata uang dunia lain juga mirip." Gumamnya.
+
+Malam semakin larut. Api unggun mulai redup. Yuzaki menambah ranting.
+
+"Kita harus tidur. Besok jalan jauh."
+
+Alicya mengangguk. Tapi matanya masih menatap Yuzaki.
+
+"Kau benar-benar aneh." Katanya pelan. "Tapi terima kasih."
+
+"Sama-sama."
+
+Mereka tidur di dekat api. Yuzaki menjaga jarak sopan. Alicya memeluk lututnya, tapi tidurnya nyenyak. Pertama kali dalam beberapa hari.
+
+---
+
+Pagi datang dengan sinar matahari dan kicau burung.
+
+Yuzaki sudah bangun lebih dulu. Ia membuat sarapan sederhana: roti panggang dengan sisa apel.
+
+Alicya bangun dengan rambut acak-acakan. Ia menguap, lalu menyadari sesuatu.
+
+"Aku tidak mimpi buruk." Katanya pelan.
+
+"Itu bagus." Yuzaki memberinya roti. "Makan, terus kita jalan."
+
+Setelah sarapan, mereka berjalan ke arah yang ditunjuk Alicya. Hutan mulai menipis, berganti padang rumput.
+
+Sekitar siang, mereka melihat sesuatu di kejauhan.
+
+Kereta kuda. Ditarik dua kuda, berjalan lambat di jalan tanah.
+
+"Tunggu." Yuzaki melambai. "Mungkin bisa nebeng."
+
+---
+
+(Scene Gambar: Seorang pedagang tua dengan jenggot abu-abu duduk di depan kereta kuda. Wajahnya ramah. Di belakangnya, barang-barang dagangan ditutup terpal.)
+
+---
+
+"Ke Alecross?" Pedagang itu mengerutkan dahi. "Iya, aku ke sana. Tapi kalian mau numpang?"
+
+Yuzaki mengangguk. "Kami tersesat. Kalau boleh nebeng, saya bantu masak selama perjalanan."
+
+Pedagang itu menatap mereka bergantian. Lelaki biasa dengan elf. Agak aneh, tapi tidak terlalu aneh di dunia ini.
+
+"Naiklah. Namaku Gerd."
+
+"Yuzaki. Ini Alicya."
+
+Mereka naik ke bagian belakang kereta, duduk di antara karung-karung. Kereta mulai bergerak.
+
+"Kata Gerd, dua hari sampai." Yuzaki membuka Item Box, mengeluarkan roti dan air. "Makan dulu."
+
+Alicya menerimanya. "Kau selalu bawa makanan?"
+
+"Banyak. Nggak tahu kapan butuh."
+
+Perjalanan hari pertama lancar. Mereka melewati padang rumput, melewati bukit kecil. Sesekali Gerd bercerita tentang Alecross, kota pelabuhan yang ramai.
+
+Saat matahari mulai turun, Gerd menghentikan kereta di dekat sungai.
+
+"Istirahat di sini malam ini." Ia turun. "Besok lanjut pagi-pagi."
+
+Yuzaki turun dan meregangkan badan. "Saya masak, Pak. Sebagai ucapan terima kasih."
+
+Gerd mengangkat alis. "Kau bisa masak?"
+
+"Koki."
+
+Yuzaki membuka Item Box diam-diam, mengeluarkan ayam fillet, tepung, dan minyak. Ia mengumpulkan batu untuk api unggun sederhana.
+
+Alicya membantu mengumpulkan kayu. Gerd duduk di dekat kereta, mengawasi dengan rasa ingin tahu.
+
+Yuzaki mulai bekerja. Potong ayam. Bumbui dengan garam dan lada. Celup tepung. Goreng di minyak panas.
+
+Suara mendesis. Aroma gorengan mulai menyebar.
+
+"Apa itu?" Gerd mendekat.
+
+"Karaage. Ayam goreng khas daerahku."
+
+Alicya menatap prosesnya dengan serius. Ia ingin tahu bagaimana makanan enak itu dibuat.
+
+Yuzaki menggoreng sampai kuning keemasan. Mengangkat, meniriskan, lalu menyajikan di daun besar.
 
 "Coba."
 
-Dia menerima daun itu dengan kedua tangan, seperti menerima benda pusaka. Matanya menatap pie itu lama. Lalu, dengan hati-hati, dia menggigit ujungnya.
+Gerd mengambil satu. Menggigit. Matanya langsung berbinar.
 
-*Kriuk.*
+"Ini... ayam? Rasanya beda."
 
-Suara renyah kulit pie patah.
+"Bumbunya meresap." Yuzaki ikut makan. "Teksturnya juga renyah."
 
-Dia mengunyah. Perlahan.
+Alicya sudah melahap tiga potong. Pipinya menggembung.
 
-Lalu matanya membelalak.
+"Enak." Ucapnya dengan mulut penuh.
 
-Dia mengunyah lagi. Lebih cepat. Lalu menggigit lebih besar. Dan lagi. Dan lagi. Mulutnya penuh, tapi dia terus makan. Air mata mengalir di pipinya, tapi dia tidak berhenti.
+Malam itu mereka makan karaage dengan nasi putih sederhana. Gerd bercerita tentang Alecross. Pelabuhan besar. Guild petualang. Pasar ramai.
 
-"Ini... ini..." Dia berbicara dengan mulut penuh, tidak peduli etika. "Ini terlalu enak! Aku belum pernah! Aku tidak tahu! Makanan bisa seenak ini?!"
+"Kalian mau cari kerja?" Gerd bertanya.
 
-Aku tertawa. Aku tidak bisa menahan tawa. Melihat ekspresinya yang begitu polos, begitu bahagia, membuat sesuatu yang hangat meledak di dadaku.
+"Iya. Mungkin buka kedai." Yuzaki menjawab.
 
-*Ini. Inilah yang kuinginkan.*
+"Kedai? Di Alecross?" Gerd tertawa kecil. "Banyak saingan. Tapi kalau masakanmu sebagus ini, mungkin bisa."
 
-*Inilah mengapa aku menjadi koki.*
+Hari kedua perjalanan sama lancarnya. Sore haranya, tembok kota mulai terlihat.
 
-Alicya menghabiskan satu potong dalam hitungan detik. Lalu menatapku dengan mata memohon.
+Alecoss. Tembok batu putih. Gerbang besar dengan penjaga berseragam.
 
-"B-boleh... minta lagi?"
+"Kita sampai." Gerd menghentikan kereta di luar gerbang. "Aku masuk duluan, urus barang. Kalian ikut?"
 
-Aku mengangguk, memotong potongan kedua untuknya. Tapi kali ini, dia tidak langsung makan. Dia memecahnya menjadi dua, dan mengulurkan setengahnya padaku.
+"Kami urus administrasi dulu." Yuzaki turun. "Terima kasih tumpangannya."
 
-"Kau juga harus makan," katanya. "Kau pasti lapar."
+"Sama-sama. Sukses buka kedai." Gerd melambai, lalu masuk ke gerbang.
 
-Aku terkejut. Lalu tersenyum. "Terima kasih, Alicya."
+Yuzaki dan Alicya berjalan ke pos penjagaan.
 
-Kami makan bersama di mulut ceruk, di bawah sinar matahari pagi yang hangat, ditemani suara air terjun kecil dan kicauan burung aneh. Sederhana. Tapi sempurna.
+Seorang penjaga dengan baju zirah menyambut mereka. "Kartu identitas?"
 
-Setelah selesai, Alicya menatapku dengan mata berbinar.
+Yuzaki terdiam. Alicya juga.
 
-"Yuzaki."
+"Kami... baru tiba." Yuzaki mencoba menjelaskan. "Dari luar kota."
 
-"Hm?"
+Penjaga itu mengerutkan dahi. Matanya menyipit menatap pakaian mereka yang kusut.
 
-"Aku... aku ingin ikut denganmu."
+"Tanpa kartu, tidak bisa masuk. Aturan kerajaan."
 
-Aku terkejut. "Ikut?"
+"Tapi kami—"
 
-Dia mengangguk kuat-kuat. "Kau bilang kau baru sampai di dunia ini, kan? Kau pasti butuh orang yang tahu dunia ini. Dan aku... aku ingin belajar. Aku ingin belajar memasak makanan seenak ini. Aku ingin bisa membuat orang lain merasakan apa yang baru saja kurasakan."
+"Dari mana kalian?" Penjaga lain mendekat. Sorot matanya curiga. "Akhir-akhir ini banyak bandit berkeliaran."
 
-Dia menunduk, tangannya meremas ujung tunik.
+Alicya mundur selangkah. Mendengar kata bandit membuatnya gelisah.
 
-"Dan... dan aku tidak ingin berpisah dengan orang yang telah menyelamatkan hidupku."
+"Kami bukan bandit." Yuzaki mencoba tenang. "Aku koki, dia elf korban penculikan. Kami cari kerja."
 
-Aku terdiam.
+Penjaga pertama menggeleng. "Maaf, aturan tetap aturan. Tidak bisa masuk tanpa identitas."
 
-Memandangi elf muda di depanku. Dengan rambut perak berantakan, pipi yang mulai merona, dan mata biru yang penuh harap.
+Yuzaki menghela napas. Saat itulah ia ingat.
 
-Aku tersenyum.
+Relic. Dewi bilang gunakan saat kesulitan.
 
-"Baiklah. Tapi jangan menyesal, ya. Aku sendiri tidak tahu harus ke mana."
+Ia merogoh saku, mengeluarkan liontin perak itu. Ukiran rumit berkilau terkena sinar matahari.
 
-Dia menggeleng kuat. "Tidak akan menyesal."
+"Ini." Yuzaki menunjukkannya. "Aku punya ini."
 
-Lalu dia tersenyum. Senyum pertama yang kulihat darinya. Senyum yang cerah, polos, dan begitu indah sampai—untuk sesaat—aku lupa bahwa aku berada di dunia asing yang tidak kukenal.
+Penjaga itu menatap liontin. Lalu matanya membelalak.
+
+"Itu..."
+
+Penjaga kedua juga ikut menatap. Wajah mereka berubah.
+
+"Tunggu di sini." Penjaga pertama berlari ke dalam pos. "Panggil Kepala!"
+
+Yuzaki dan Alicya saling pandang.
+
+Alicya berbisik, "Apa itu?"
+
+"Pemberian Dewi." Yuzaki menjawab pelan.
+
+Beberapa menit kemudian, seorang pria paruh baya dengan jubah biru keluar dari pos. Rambutnya disisir rapi, kacamata di ujung hidung. Ia langsung menatap liontin di tangan Yuzaki.
+
+"Boleh saya lihat?"
+
+Yuzaki menyerahkannya.
+
+Pria itu memegang liontin dengan hati-hati. Jarinya menyentuh ukiran. Lalu liontin itu memancarkan cahaya redup.
+
+Pria itu menghela napas.
+
+"Asli." Suaranya bergetar. "Relic Dewi. Asli."
+
+Ketua penjaga yang ikut keluar terbelalak. "Apa maksudmu, Scholar?"
+
+Pria berkacamata itu menatap Yuzaki. "Relic ini tidak bisa dipalsukan. Hanya akan bereaksi kepada pemilik asli yang dipilih Dewi."
+
+Ia menunduk. Ketua penjaga ikut menunduk.
+
+"Selamat datang, Tuan." Suara Ketua penjaga berubah hormat. "Di kerajaan kami. Maaf atas ketidaknyamanan tadi."
+
+Yuzaki bingung. Alicya juga.
+
+"Maaf... apa yang terjadi?" Yuzaki bertanya.
+
+"Tuan belum tahu?" Scholar itu tersenyum. "300 tahun lalu, seorang pahlawan dengan Relic Dewi menyelamatkan kerajaan ini dari kehancuran. Serangan monster besar-besaran. Ia mengalahkan raja monster sendirian."
+
+Ketua penjaga menambahkan, "Raja memerintahkan agar pemilik Relic diperlakukan dengan hormat. Jangan pernah mencoba memusuhi. Dewi sendiri yang akan murka."
+
+Yuzaki dan Alicya hanya bisa melongo.
+
+"Mari, Tuan. Aku akan mengurus kartu identitas kalian." Ketua penjaga memberi isyarat. "Prosesnya akan dipercepat. Besok sudah jadi."
+
+Mereka dipersilakan masuk ke pos. Minuman hangat disediakan. Perlakuan berubah total.
+
+Alicya berbisik, "Kau tidak bilang Relicmu sebagus ini."
+
+"Aku juga baru tahu." Yuzaki menjawab pelan.
 
 ---
 
-### Chapter 3: Menuju Kota
+Keesokan paginya, kartu identitas mereka sudah selesai. Yuzaki dan Alicya berjalan ke pusat kota Alecross.
 
-Dua hari kemudian, kami akhirnya menemukan jalan keluar dari hutan.
+Gedung-gedung batu. Pasar ramai. Pedagang berteriak menawarkan barang. Bau rempah dan ikan asin bercampur jadi satu.
 
-Perjalanan dua hari itu terasa seperti petualangan kecil yang menyenangkan. Aku memasak, Alicya belajar. Dia membantu mengumpulkan kayu bakar, mencari air, dan sesekali mencoba memotong bahan di bawah pengawasanku. Tangannya yang cekatan—mungkin karena terbiasa meramu bahan ramuan—cepat belajar.
+Di tengah kota, sebuah gedung besar dengan papan bertuliskan "Guild Petualang".
 
-Aku juga belajar banyak darinya. Tentang dunia ini. Tentang kerajaan, guild, petualang, monster, dan kota-kota yang ada. Tentang elf, dwarf, beastmen, dan ras-ras lain. Tentang bagaimana dunia ini bekerja.
+Yuzaki membuka pintu.
 
-Dan yang paling penting: tentang betapa miskinnya rasa di dunia ini.
+Di dalam, puluhan orang dengan berbagai ras. Manusia, dwarf, setengah elf. Mereka duduk di meja, membaca papan pengumuman, atau mengantre di loket.
 
-"Kebanyakan makanan hanya direbus atau dibakar tanpa bumbu," jelas Alicya saat kami istirahat di tepi sungai. "Garam itu mahal. Merica hampir tidak ada. Rempah-rempah hanya dimiliki bangsawan. Rakyat biasa makan bubur gandum tanpa rasa dan daging buruan yang dibakar gosong."
+Yuzaki mendekati loket pendaftaran. Seorang wanita setengah baya dengan rambut dikuncir menyapanya.
 
-Aku mengerutkan kening. "Jadi... mereka tidak tahu rasa?"
+"Mau daftar?"
 
-"Tidak. Setidaknya, tidak seperti makananmu."
+"Iya. Saya dan dia." Yuzaki menunjuk Alicya.
 
-Aku memandangi tanganku. Item Box masih berisi banyak bahan. Tepung, gula, garam, rempah-rempah dasar. Dan skill memasakku...
+"Formulir diisi dulu. 10 tembaga per orang."
 
-Mungkin. Mungkin aku bisa melakukan sesuatu di dunia ini.
+Yuzaki membayar dengan uang pinjaman Gerd kemarin. Mereka mengisi formulir sederhana. Nama, asal, skill.
 
-"Di depan sana ada kota," kata Alicya sambil menunjuk ke arah celah pepohonan. "Kota Perbatasan Lydel. Tempat pertama yang aman bagi petualang dan pedagang."
+Yuzaki menulis: Koki. Item Box.
 
-Aku berdiri, memandangi jalan setapak yang mulai terlihat. Di ujungnya, samar-samar, kulihat puncak menara batu.
+Alicya menulis: Elf. Pengetahuan tanaman.
 
-*Kota pertama di dunia lain.*
+"Peringkat F dulu." Wanita itu memberi mereka lencana kayu. "Naik peringkat kalau banyak selesaikan quest. Mau lihat papan?"
 
-Dadaku berdebar. Gugup. Tapi juga bersemangat.
+Yuzaki mengangguk. Mereka berdua melihat papan pengumuman.
 
-"Yuzaki." Alicya meraih tanganku. Matanya menatapku serius. "Aku akan membantumu. Apa pun yang terjadi. Aku akan di sampingmu."
+Quest peringkat F kebanyakan sederhana. Bersihkan gudang. Cari kucing hilang. Ambil tanaman herbal di gunung.
 
-Kehangatan menjalar dari tangannya.
+"Tanaman herbal." Yuzaki menunjuk. "Kamu bisa, kan?"
 
-Aku tersenyum.
+Alicya mengangguk. "Aku tahu tanaman."
 
-"Ayo. Kita mulai petualangan baru."
+Mereka mengambil quest itu. 2 koin perak. Lumayan buat modal.
+
+Saat keluar dari guild, seseorang memanggil.
+
+"Tuan Yuzaki!"
+
+Ketua penjaga kemarin berlari mendekat. Napasnya sedikit tersengal.
+
+"Ada kabar baik." Ia tersenyum. "Bandit yang menculik Non Alicya sudah tertangkap. Patroli menemukan mereka di hutan timur."
+
+Alicya menutup mulut. Matanya sedikit berkaca-kaca.
+
+"Benar?" Suaranya bergetar.
+
+"Iya, Non. Mereka sudah di penjara kota."
+
+Alicya menghela napas panjang. Beban di pundaknya terasa hilang.
+
+Yuzaki tersenyum. "Syukurlah."
+
+Setelah Ketua penjaga pergi, mereka berdua melanjutkan perjalanan ke gunung. Jalur mendaki, tapi Alicya gesit. Ia menunjukkan berbagai tanaman.
+
+"Ini rosemary liar." Ia memetik daun hijau. "Buat obat batuk."
+
+"Ini thyme. Biasa buat bumbu daging."
+
+Yuzaki memperhatikan dengan serius. Pengetahuan ini berguna untuk masakannya nanti.
+
+Mereka mengumpulkan tanaman sesuai quest, plus beberapa lebih untuk stok pribadi. Saat keranjang penuh, mereka kembali ke guild.
+
+Wanita di loket memeriksa hasil tanaman. "Bagus, kualitas baik." Ia memberi dua koin perak. "Ini upahnya."
+
+Yuzaki menerima dua koin perak. Ia menimbangnya.
+
+"100 tembaga = 1 perak. Jadi ini 200 tembaga." Gumamnya.
+
+Mereka keluar guild. Matahari mulai turun.
+
+"Kita cari penginapan." Yuzaki melihat sekeliling. "Masih ada uang buat dua kamar?"
+
+Alicya melihat papan informasi di dekat guild. "Penginapan Melly. 40 tembaga per kamar per malam."
+
+"Dua kamar berarti 80 tembaga." Yuzaki menghitung. "Sisa 10 tembaga buat besok."
+
+Alicya diam sebentar. "Satu kamar saja tidak apa-apa."
+
+Yuzaki menggeleng. "Tidak. Itu kurang pantas."
+
+"Tapi—"
+
+"Aku koki, bukan bandit." Yuzaki berjalan ke arah penginapan. "Dua kamar."
+
+Penginapan Melly bersih dan sederhana. Pemiliknya, wanita paruh baya bernama Melly, ramah. Ia menerima tamu guild dengan diskon kecil.
+
+"Dua kamar? 80 tembaga." Melly menerima uang. "Kamar nomor 3 dan 4. Sarapan jam 7."
+
+Malam itu, Yuzaki tidur di kamar sederhana. Kasur jerami, selimut tipis. Tapi lebih nyaman dari tidur di hutan.
+
+Pagi harinya, mereka sarapan roti dan sup. Yuzaki menghitung sisa uang: 10 tembaga.
+
+"Besok harus ambil quest lebih banyak." Ucapnya.
+
+Ketika mereka bersiap keluar, seseorang mengetuk pintu.
+
+"Tuan Yuzaki?" Suara Melly dari luar. "Ada tamu. Ketua penjaga mau bertemu."
+
+Yuzaki dan Alicya turun. Ketua penjaga sudah duduk di ruang tamu Melly.
+
+"Maaf mengganggu pagi-pagi." Ia bangkit. "Saya diutus Raja. Baginda ingin bertemu Tuan Yuzaki."
+
+Melly, yang sedang menyajikan teh, hampir menjatuhkan cangkir.
+
+"Raja? Mau bertemu dia?" Ia menatap Yuzaki.
+
+"Iya, Nyonya." Ketua penjaga tersenyum. "Ada kereta istana di luar."
+
+Yuzaki menatap Alicya. Alicya menatapnya kembali.
+
+"Sepertinya kita harus pergi." Yuzaki menghela napas.
+
+Mereka naik kereta kuda mewah. Perjalanan ke istana tidak lama. Alecross kecil, istana di pusat kota.
+
+Istana tidak semegah yang Yuzaki bayangkan. Batu putih, taman sederhana, penjaga di pintu.
+
+Mereka dipersilakan masuk ke ruang tamu. Bukan ruang tahta megah, tapi ruang santai dengan sofa dan meja.
+
+Seorang pria paruh baya masuk. Jubah sederhana, mahkota kecil di kepala. Wajahnya ramah, tidak seperti raja di film-film.
+
+"Yuzaki." Ia tersenyum. "Duduklah. Tidak perlu formal."
+
+Yuzaki, yang sudah bersiap membungkuk ala Jepang, sedikit kikuk. Ia duduk di sofa.
+
+Raja duduk di hadapannya. Alicya duduk di samping Yuzaki.
+
+"Aku hanya ingin melihat pemilik Relic." Raja menatapnya. "Ceritakan tentang dirimu."
+
+Yuzaki bercerita. Tentang dunianya (dengan versi yang diedit), tentang keahlian memasak, tentang rencananya.
+
+"Aku ingin buka kedai." Yuzaki mengakhiri ceritanya. "Masak dan jual makanan."
+
+Raja mengangguk. Matanya berbinar.
+
+"Kedai? Di Alecross?"
+
+"Iya, Tu... Baginda."
+
+Raja berpikir sebentar. Lalu ia berkata, "Aku punya tanah kosong di dekat pasar. Bisa buka kedai di sana."
+
+Yuzaki terkejut. "Apa?"
+
+"Aku akan suruh dwarf bangunkan kedai untukmu." Raja tersenyum. "Sebagai ucapan terima kasih. Relic Dewi sudah menyelamatkan kerajaan ini. Aku hanya membalas budi."
+
+Yuzaki bingung harus berkata apa. Alicya juga.
+
+"Tapi... aku tidak bisa terima gratis—"
+
+"Anggap pinjaman." Raja memotong. "Bayar nanti kalau kedaimu sukses."
+
+Tidak ada alasan menolak. Yuzaki mengangguk. "Terima kasih, Baginda."
 
 ---
 
-### Epilog: Relic di Gerbang Kota
+Tiga minggu kemudian.
 
-Gerbang kota Lydel berdiri kokoh di depan kami. Dijaga dua penjaga bersenjata lengkap yang memandangi kami—terutama aku—dengan curiga.
+Yuzaki berdiri di depan bangunan baru. Kayu kokoh, jendela besar, dapur dengan tungku batu. Desain persis seperti yang ia gambar. Persis seperti restoran ayahnya di dunia lama.
 
-"Berhenti. Tunjukkan identitas kalian," kata salah satu penjaga.
+Di sampingnya, Alicya menatap dengan mulut sedikit terbuka.
 
-Aku menelan ludah. Identitas? Aku tidak punya apa-apa.
+"Ini... kedai?"
 
-Alicya melangkah maju, mencoba menjelaskan, tapi penjaga itu menggeleng. "Dia manusia. Aku belum pernah lihat wajahnya. Bisa jadi mata-mata dari kerajaan lain. Atau kriminal buronan."
+"Iya."
 
-Aku panik. Tapi teringat pesan Dewi.
+Seorang dwarf dengan jenggot merah, kepala tukang bangunan, mengelap keringat di dahi. "Desain aneh, tapi bagus. Jendela besar biar cahaya masuk. Dapur luas. Meja bundar."
 
-*"Jika kamu kesulitan, tunjukkan relic ini. Ini mungkin akan membantumu."*
+"Terima kasih, Foreman." Yuzaki menatap bangunan itu. Di atas pintu, papan kayu masih kosong.
 
-Dengan hati-hati, aku merogoh kantong—sebenarnya, aku mengambilnya dari Item Box tanpa ketahuan—dan mengeluarkan medali perak itu. Relic Dewi. Aku menunjukkannya pada penjaga.
+Alicya bertanya, "Nama kedainya?"
 
-"Maaf, aku tidak punya identitas. Tapi aku punya ini."
+Yuzaki tersenyum.
 
-Penjaga itu menatap relic.
-
-Lalu matanya membelalak.
-
-Wajahnya pucat.
-
-"T-tunggu di sini!" Dia berlari masuk ke kota, meninggalkan rekannya yang juga terlihat gugup.
-
-Aku dan Alicya saling pandang.
-
-"Yuzaki... apa itu?" bisik Alicya.
-
-"Hadiah dari Dewi yang mengirimku ke sini," jawabku sama pelannya.
-
-Beberapa menit kemudian, seorang pria paruh baya dengan jubah berhiaskan emblem kota keluar dari gerbang. Di belakangnya, beberapa penjaga lain mengikuti dengan hormat.
-
-"Ketua Penjaga Kota," bisik Alicya.
-
-Pria itu—Ketua Penjaga—berhenti di depanku. Matanya menatap relic di tanganku dengan intensitas luar biasa. Lalu dia mengulurkan tangan.
-
-"Boleh kulihat lebih dekat?"
-
-Aku menyerahkannya.
-
-Dia memegang relic itu dengan hati-hati, membolak-balik, mengamati setiap ukiran. Lalu dia menggenggamnya erat, memejamkan mata. Sesaat kemudian, relic itu bersinar redup.
-
-Ketua Penjaga membuka mata. Matanya melebar.
-
-Dia berlutut.
-
-Diikuti semua penjaga di belakangnya.
-
-"Penjaga Dewi," katanya dengan suara bergetar. "Maafkan kami atas kekurangajaran kami. Kami tidak tahu bahwa utusan Dewi datang ke kota kami."
-
-Aku dan Alicya terbelalak.
-
-"U-utusan Dewi?" Alicya menatapku dengan mata membulat.
-
-Ketua Penjaga mengangkat wajahnya. "Relic ini... hanya bisa digunakan oleh orang yang benar-benar diberkati Dewi. Yang memegangnya akan mendapat gelar *Penjaga Dewi*. Gelar yang diberikan hanya pada satu orang dalam satu abad."
-
-Aku terdiam. *Satu orang dalam satu abad?*
-
-Ketua Penjaga berdiri, mengembalikan relic padaku dengan hormat.
-
-"Kami akan segera mengurus kartu identitas untukmu, Tuan Penjaga. Dan jika ada yang bisa kami bantu, jangan ragu untuk memintanya. Ini adalah kehormatan bagi kota kami."
-
-Aku masih tertegun. Tapi di sampingku, Alicya meraih tanganku dan tersenyum.
-
-"Yuzaki," bisiknya. "Kau benar-benar istimewa."
-
-Aku tersenyum canggung.
-
-*Istimewa? Entahlah. Aku hanya koki yang ingin masak dan membuat orang bahagia.*
-
-*Tapi mungkin... mungkin di dunia ini, itu sudah cukup istimewa.*
+"Yuzaki's Kitchen."
 
 ---
 
-**Bersambung ke Episode 2: Penjaga Dewi**
-
----
-
-*Penulis Catatan:*
-*Episode 1 selesai. Perjalanan Yuzaki dan Alicya baru saja dimulai. Di episode selanjutnya, status "Penjaga Dewi" akan membawa mereka pada petualangan baru—dan tentu saja, makanan-makanan baru yang akan mengubah dunia ini selamanya.*
-
-*Sampai jumpa di episode berikutnya!*
+**Bersambung ke Chapter 2**
