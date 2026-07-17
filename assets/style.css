@@ -1,3 +1,7 @@
+/* ============================================
+   ROOT VARIABLES
+   ============================================ */
+
 :root {
     --bg-primary: #0a0c0f;
     --bg-secondary: #14181c;
@@ -18,13 +22,18 @@
     --warning: #f59e0b;
     --skeleton-bg: #2a3138;
     --skeleton-highlight: #3a4450;
+    --like-color: #ef4444;
+    --like-bg: rgba(239, 68, 68, 0.15);
     
     /* Grid breakpoints */
     --grid-min-width: 140px;
     --grid-gap: 1rem;
 }
 
-/* Light Theme */
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+
 body.light-theme {
     --bg-primary: #f5f7fa;
     --bg-secondary: #ffffff;
@@ -35,11 +44,13 @@ body.light-theme {
     --text-muted: #6b7280;
     --border: #e5e7eb;
     --border-light: #d1d5db;
+    --skeleton-bg: #e5e7eb;
+    --skeleton-highlight: #d1d5db;
 }
 
-/* =========================================== */
-/* TAP HIGHLIGHT REMOVAL */
-/* =========================================== */
+/* ============================================
+   TAP HIGHLIGHT REMOVAL
+   ============================================ */
 
 *,
 *::before,
@@ -80,9 +91,9 @@ select:focus:not(:focus-visible) {
     outline: none;
 }
 
-/* =========================================== */
-/* ANIMATIONS */
-/* =========================================== */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
 @keyframes skeleton-loading {
     0% {
@@ -107,9 +118,39 @@ select:focus:not(:focus-visible) {
     }
 }
 
-/* =========================================== */
-/* BASE STYLES */
-/* =========================================== */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes likeAnimation {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -123,15 +164,15 @@ body {
 }
 
 .container {
-    max-width: 2000px; /* Increased for ultra-wide screens */
+    max-width: 2000px;
     margin: 0 auto;
     padding: 0 16px;
     width: 100%;
 }
 
-/* =========================================== */
-/* HEADER - FIXED RESPONSIVE */
-/* =========================================== */
+/* ============================================
+   HEADER - FIXED RESPONSIVE
+   ============================================ */
 
 header {
     background: var(--bg-secondary);
@@ -241,9 +282,9 @@ header h1 {
     background: var(--bg-card);
 }
 
-/* =========================================== */
-/* PAGE HEADER */
-/* =========================================== */
+/* ============================================
+   PAGE HEADER
+   ============================================ */
 
 .page-header {
     margin: 1.5rem 0;
@@ -261,9 +302,9 @@ header h1 {
     color: var(--accent);
 }
 
-/* =========================================== */
-/* SEARCH SECTION - FIXED RESPONSIVE */
-/* =========================================== */
+/* ============================================
+   SEARCH SECTION - FIXED RESPONSIVE
+   ============================================ */
 
 .search-section {
     display: flex;
@@ -373,9 +414,13 @@ header h1 {
     border-color: var(--border-light);
 }
 
-/* =========================================== */
-/* CONTINUE READING */
-/* =========================================== */
+.sort-select option[value="popular"] {
+    font-weight: normal;
+}
+
+/* ============================================
+   CONTINUE READING
+   ============================================ */
 
 .continue-reading {
     margin: 1.5rem 0;
@@ -431,9 +476,18 @@ header h1 {
     color: var(--text-secondary);
 }
 
-/* =========================================== */
-/* NOVEL GRID - FIXED WITH 3+ COLUMNS */
-/* =========================================== */
+.continue-stats {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ============================================
+   NOVEL GRID
+   ============================================ */
 
 .novel-grid {
     display: grid;
@@ -443,7 +497,7 @@ header h1 {
     animation: fadeIn 0.3s ease;
 }
 
-/* Ultra-wide screens - lebih banyak columns */
+/* Ultra-wide screens */
 @media (min-width: 1600px) {
     .novel-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -482,7 +536,7 @@ header h1 {
     }
 }
 
-/* Very small mobile - tetap 3 columns dengan ukuran lebih kecil */
+/* Very small mobile */
 @media (max-width: 480px) {
     .novel-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -490,7 +544,7 @@ header h1 {
     }
 }
 
-/* Extra small devices - tetap 3 columns */
+/* Extra small devices */
 @media (max-width: 360px) {
     .novel-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -498,22 +552,106 @@ header h1 {
     }
 }
 
-/* 9:16 Aspect Ratio untuk semua cover */
+/* Landscape mode pada mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .novel-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+    }
+}
+
+/* Tablet portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .novel-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Tablet landscape */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .novel-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* Small desktop */
+@media (min-width: 1367px) and (max-width: 1599px) {
+    .novel-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .novel-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* Ultra-wide desktop */
+@media (min-width: 2000px) {
+    .novel-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Cinema display */
+@media (min-width: 2560px) {
+    .novel-grid {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* 4K display */
+@media (min-width: 3840px) {
+    .novel-grid {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* ============================================
+   NOVEL CARD
+   ============================================ */
+
+.novel-card {
+    background: var(--bg-secondary);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    position: relative;
+}
+
+.novel-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+}
+
+/* Cover Wrapper - 9:16 Aspect Ratio */
 .cover-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 147.5%; /* 9:16 aspect ratio (9/16 = 0.5625, tapi untuk tinggi, 16/9 = 1.777 = 177.7%, tapi kita pakai 147.5% agar proporsional) */
+    padding-top: 147.5%;
     background: var(--bg-secondary);
     overflow: hidden;
     border-radius: 12px 12px 0 0;
 }
 
-/* Fixed 9:16 Aspect Ratio */
 .cover-wrapper.cover-9-16,
 .novel-card .cover-wrapper {
-    padding-top: 147.5%; /* Sedikit lebih pendek agar card tidak terlalu tinggi */
+    padding-top: 147.5%;
 }
 
+/* Skeleton Loading */
 .skeleton {
     position: absolute;
     top: 0;
@@ -531,6 +669,17 @@ header h1 {
     z-index: 1;
 }
 
+.skeleton.error-state {
+    background: var(--bg-card);
+    animation: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 2rem;
+}
+
+/* Novel Cover Image */
 .novel-cover {
     position: absolute;
     top: 0;
@@ -547,7 +696,7 @@ header h1 {
     transform: scale(1.05);
 }
 
-/* Bookmark button on card */
+/* Bookmark Button on Card */
 .card-bookmark-btn {
     position: absolute;
     top: 6px;
@@ -584,16 +733,79 @@ header h1 {
     font-weight: 900;
 }
 
-.skeleton.error-state {
-    background: var(--bg-card);
-    animation: none;
+/* Card Like Button */
+.card-like-btn {
+    position: absolute;
+    bottom: 44px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 2rem;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    font-size: 0.65rem;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
 }
 
+.card-like-btn:hover {
+    transform: scale(1.05);
+}
+
+.card-like-btn.liked {
+    background: var(--like-bg);
+    border-color: var(--like-color);
+    color: var(--like-color);
+}
+
+.card-like-btn.liked i {
+    font-weight: 900;
+}
+
+.card-like-btn.liked .like-count {
+    color: var(--like-color);
+}
+
+.like-count {
+    font-size: 0.6rem;
+}
+
+/* Card Stats */
+.card-stats {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+    flex-wrap: wrap;
+}
+
+.card-stats span {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-stats span i {
+    font-size: 0.5rem;
+}
+
+/* Novel Info */
 .novel-info {
     padding: 0.6rem;
 }
@@ -641,9 +853,9 @@ header h1 {
     color: var(--bg-primary);
 }
 
-/* =========================================== */
-/* DETAIL PAGE - FIXED 9:16 ASPECT RATIO */
-/* =========================================== */
+/* ============================================
+   DETAIL PAGE
+   ============================================ */
 
 .novel-detail {
     margin: 1.5rem 0;
@@ -664,7 +876,7 @@ header h1 {
 .detail-header .cover-wrapper {
     width: 180px;
     padding-top: 0;
-    height: 267px; /* 180 * 1.483 = 267 (sedikit lebih pendek dari 16:9) */
+    height: 267px;
     flex-shrink: 0;
     border-radius: 16px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -731,12 +943,53 @@ header h1 {
     border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-#chapterCount {
+.detail-stats {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.detail-stats span {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     color: var(--text-secondary);
     font-size: 0.85rem;
+}
+
+.detail-stats span i {
+    color: var(--accent);
+}
+
+/* Detail Like Button */
+.detail-like-btn {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    color: var(--text-secondary);
+    padding: 0.4rem 1rem;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.detail-like-btn:hover {
+    border-color: var(--accent);
+}
+
+.detail-like-btn.liked {
+    background: var(--like-bg);
+    border-color: var(--like-color);
+    color: var(--like-color);
+}
+
+.detail-like-btn.liked i {
+    font-weight: 900;
 }
 
 .novel-description {
@@ -745,63 +998,9 @@ header h1 {
     font-size: 0.9rem;
 }
 
-/* =========================================== */
-/* EMPTY STATE */
-/* =========================================== */
-
-.empty-state {
-    text-align: center;
-    padding: 3rem 1.5rem;
-    background: var(--bg-secondary);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    margin: 2rem 0;
-}
-
-.empty-state i {
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-    opacity: 0.5;
-}
-
-.empty-state h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.empty-state p {
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.7rem 1.5rem;
-    background: var(--accent-gradient);
-    color: white;
-    text-decoration: none;
-    border-radius: 36px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: transparent;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-}
-
-/* =========================================== */
-/* CHAPTERS SECTION */
-/* =========================================== */
+/* ============================================
+   CHAPTERS SECTION
+   ============================================ */
 
 .chapters-section {
     background: var(--bg-secondary);
@@ -890,6 +1089,7 @@ header h1 {
     background: var(--accent);
 }
 
+/* Chapter Item */
 .chapter-item {
     background: var(--bg-card);
     padding: 0.8rem 1rem;
@@ -916,15 +1116,51 @@ header h1 {
     opacity: 0.8;
 }
 
-/* =========================================== */
-/* READER PAGE */
-/* =========================================== */
+.chapter-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Chapter Like Button */
+.chapter-like-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 16px;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.chapter-like-btn:hover {
+    background: var(--bg-hover);
+}
+
+.chapter-like-btn.liked {
+    color: var(--like-color);
+}
+
+.chapter-like-btn.liked i {
+    font-weight: 900;
+}
+
+/* ============================================
+   READER PAGE
+   ============================================ */
 
 .reader-container {
     max-width: 900px;
     margin: 0 auto;
 }
 
+/* Reader Toolbar */
 .reader-toolbar {
     background: var(--bg-secondary);
     padding: 1rem;
@@ -985,6 +1221,7 @@ header h1 {
     min-width: 35px;
 }
 
+/* Reader Header */
 .reader-header {
     text-align: center;
     margin: 1.5rem 0 1rem;
@@ -1002,6 +1239,39 @@ header h1 {
     font-weight: 400;
 }
 
+/* Reader Like Button */
+.reader-like-btn {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    color: var(--text-secondary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 36px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.reader-like-btn:hover {
+    border-color: var(--accent);
+}
+
+.reader-like-btn.liked {
+    background: var(--like-bg);
+    border-color: var(--like-color);
+    color: var(--like-color);
+}
+
+.reader-like-btn.liked i {
+    font-weight: 900;
+}
+
+/* Reader Navigation */
 .reader-navigation {
     display: flex;
     gap: 0.8rem;
@@ -1049,6 +1319,7 @@ header h1 {
     min-width: 160px;
 }
 
+/* Chapter Content */
 .chapter-content {
     background: var(--bg-secondary);
     padding: 2rem;
@@ -1148,6 +1419,20 @@ header h1 {
     border-bottom-style: solid;
 }
 
+/* Font Families for Reader */
+.chapter-content.serif {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.chapter-content.sans-serif {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.chapter-content.monospace {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+}
+
+/* Reader Footer */
 .reader-footer {
     display: flex;
     justify-content: center;
@@ -1177,9 +1462,186 @@ header h1 {
     transform: translateY(-2px);
 }
 
-/* =========================================== */
-/* MODAL */
-/* =========================================== */
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+.empty-state i {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.5rem;
+    background: var(--accent-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 36px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* ============================================
+   LOADING & ERROR
+   ============================================ */
+
+.loading {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    margin: 1.5rem 0;
+}
+
+.loading i {
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+.error {
+    background: var(--error-bg);
+    color: var(--error);
+    padding: 1rem;
+    border-radius: 14px;
+    margin: 1rem 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    font-size: 0.9rem;
+}
+
+.error i {
+    font-size: 1.1rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.load-more {
+    padding: 0.8rem 2rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border);
+    border-radius: 36px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.load-more:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.load-more i {
+    font-size: 0.85rem;
+    transition: transform 0.2s ease;
+}
+
+.load-more:hover i {
+    transform: translateY(3px);
+}
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+
+.scroll-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.scroll-top:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5);
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
 
 .modal {
     position: fixed;
@@ -1343,144 +1805,31 @@ input:checked + .slider:before {
     background-color: white;
 }
 
-/* =========================================== */
-/* LOADING & ERROR */
-/* =========================================== */
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
 
-.loading {
-    text-align: center;
-    padding: 2.5rem;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
     background: var(--bg-secondary);
-    border-radius: 24px;
-    margin: 1.5rem 0;
 }
 
-.loading i {
-    font-size: 1.3rem;
-    color: var(--accent);
+::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 8px;
 }
 
-.error {
-    background: var(--error-bg);
-    color: var(--error);
-    padding: 1rem;
-    border-radius: 14px;
-    margin: 1rem 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    font-size: 0.9rem;
-}
-
-.error i {
-    font-size: 1.1rem;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* =========================================== */
-/* PAGINATION */
-/* =========================================== */
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.load-more {
-    padding: 0.8rem 2rem;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 1.5px solid var(--border);
-    border-radius: 36px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: transparent;
-}
-
-.load-more:hover {
+::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
-.load-more i {
-    font-size: 0.85rem;
-    transition: transform 0.2s ease;
-}
-
-.load-more:hover i {
-    transform: translateY(3px);
-}
-
-/* =========================================== */
-/* SCROLL TO TOP */
-/* =========================================== */
-
-.scroll-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--accent-gradient);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: transparent;
-}
-
-.scroll-top:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5);
-}
-
-/* =========================================== */
-/* FONT FAMILIES */
-/* =========================================== */
-
-.chapter-content.serif {
-    font-family: Georgia, 'Times New Roman', serif;
-}
-
-.chapter-content.sans-serif {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.chapter-content.monospace {
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-}
-
-/* =========================================== */
-/* TOUCH DEVICE OPTIMIZATIONS */
-/* =========================================== */
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
 
 @media (hover: none) {
     .novel-card:hover {
@@ -1510,33 +1859,23 @@ input:checked + .slider:before {
     .card-bookmark-btn:hover {
         transform: none;
     }
+    
+    .card-like-btn:hover {
+        transform: none;
+    }
+    
+    .detail-like-btn:hover {
+        transform: none;
+    }
+    
+    .reader-like-btn:hover {
+        transform: none;
+    }
 }
 
-/* =========================================== */
-/* CUSTOM SCROLLBAR */
-/* =========================================== */
-
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border-light);
-    border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
-}
-
-/* =========================================== */
-/* PRINT STYLES */
-/* =========================================== */
+/* ============================================
+   PRINT STYLES
+   ============================================ */
 
 @media print {
     header,
@@ -1547,7 +1886,11 @@ input:checked + .slider:before {
     .scroll-top,
     .pagination,
     .card-bookmark-btn,
-    .chapter-controls {
+    .card-like-btn,
+    .chapter-controls,
+    .detail-like-btn,
+    .reader-like-btn,
+    .chapter-like-btn {
         display: none !important;
     }
     
@@ -1558,72 +1901,46 @@ input:checked + .slider:before {
         margin: 0;
         box-shadow: none;
     }
-}
-
-/* =========================================== */
-/* ADDITIONAL RESPONSIVE FIXES */
-/* =========================================== */
-
-/* Landscape mode pada mobile */
-@media (max-width: 896px) and (orientation: landscape) {
-    .novel-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.8rem;
+    
+    .novel-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 }
 
-/* Tablet portrait */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .novel-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 
-/* Tablet landscape */
-@media (min-width: 1025px) and (max-width: 1366px) {
-    .novel-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.2rem;
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #1a1a1a;
+        --bg-card: #2a2a2a;
+        --text-primary: #ffffff;
+        --text-secondary: #e0e0e0;
+        --border: #ffffff;
+        --accent: #9b6bff;
     }
-}
-
-/* Small desktop */
-@media (min-width: 1367px) and (max-width: 1599px) {
-    .novel-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 1.2rem;
-    }
-}
-
-/* Large desktop */
-@media (min-width: 1600px) and (max-width: 1999px) {
-    .novel-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 1.2rem;
-    }
-}
-
-/* Ultra-wide desktop */
-@media (min-width: 2000px) {
-    .novel-grid {
-        grid-template-columns: repeat(7, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-/* Cinema display */
-@media (min-width: 2560px) {
-    .novel-grid {
-        grid-template-columns: repeat(8, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-/* 4K display */
-@media (min-width: 3840px) {
-    .novel-grid {
-        grid-template-columns: repeat(10, 1fr);
-        gap: 2rem;
+    
+    body.light-theme {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f0f0f0;
+        --bg-card: #e0e0e0;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border: #000000;
     }
 }
