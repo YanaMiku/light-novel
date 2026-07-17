@@ -11,6 +11,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/style.css">
     
+    <!-- Dreamlo Library -->
+    <script src="./assets/dreamlo.js"></script>
+    <script src="./assets/dreamlo-data.js"></script>
+    
     <!-- Base URL for subdirectory -->
     <base href="/light-novel/">
 </head>
@@ -30,9 +34,6 @@
                     <i class="fas fa-bookmark"></i>
                     <span class="nav-text">Bookmarks</span>
                 </a>
-                <button class="icon-btn" id="settingsBtn" title="Settings">
-                    <i class="fas fa-cog"></i>
-                </button>
                 <a href="./" class="icon-btn" id="backBtn" title="Back to Home">
                     <i class="fas fa-arrow-left"></i>
                 </a>
@@ -43,9 +44,9 @@
     <main class="container">
         <div class="page-header">
             <h2><i class="fas fa-bookmark"></i> My Bookmarks</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.3rem;">
-                <i class="fas fa-info-circle"></i> 
-                Your bookmarks are saved to the cloud and synced across devices
+            <p id="deviceInfo" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">
+                <i class="fas fa-mobile-screen-button"></i> 
+                <span id="deviceIdDisplay">Loading device ID...</span>
             </p>
         </div>
 
@@ -63,10 +64,6 @@
             <i class="fas fa-bookmark fa-4x"></i>
             <h3>No Bookmarks Yet</h3>
             <p>Start bookmarking your favorite novels to see them here!</p>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
-                <i class="fas fa-lightbulb"></i> 
-                Tip: Click the <i class="fas fa-bookmark" style="color: var(--accent);"></i> icon on any novel card to bookmark it
-            </p>
             <a href="./" class="btn-primary">
                 <i class="fas fa-home"></i>
                 Browse Novels
@@ -74,64 +71,24 @@
         </div>
         
         <div id="bookmarkGrid" class="novel-grid"></div>
-
-        <!-- Bookmark Stats -->
-        <div id="bookmarkStats" class="bookmark-stats hidden" style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border); text-align: center;">
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                <i class="fas fa-bookmark" style="color: var(--accent);"></i>
-                You have <span id="bookmarkCount" style="color: var(--text-primary); font-weight: 600;">0</span> bookmarked novels
-            </p>
-        </div>
     </main>
-
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-cog"></i> Settings</h3>
-                <button class="modal-close" id="closeSettingsBtn" aria-label="Close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="setting-item">
-                    <label>
-                        <i class="fas fa-palette"></i>
-                        Theme
-                    </label>
-                    <select id="themeSelect">
-                        <option value="dark">Dark Mode</option>
-                        <option value="light">Light Mode</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label>
-                        <i class="fas fa-eye"></i>
-                        Show Reader Toolbar
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" id="showReaderToolbar" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="setting-item" style="border-bottom: none; padding-bottom: 0;">
-                    <label>
-                        <i class="fas fa-sync"></i>
-                        Auto-sync Bookmarks
-                    </label>
-                    <span style="color: var(--text-muted); font-size: 0.8rem;">
-                        <i class="fas fa-check-circle" style="color: var(--success);"></i> Enabled
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <button id="scrollToTopBtn" class="scroll-top hidden" title="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="./assets/dreamlo-config.js"></script>
+    <script>
+        // Display Device ID
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const deviceIdDisplay = document.getElementById('deviceIdDisplay');
+                if (deviceIdDisplay && window.DreamloAPI) {
+                    deviceIdDisplay.textContent = window.DreamloAPI.DEVICE_ID || 'Not available';
+                }
+            }, 1000);
+        });
+    </script>
+
     <script src="./assets/script.js"></script>
 </body>
 </html>

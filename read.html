@@ -14,6 +14,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/style.css">
     
+    <!-- Dreamlo Library -->
+    <script src="./assets/dreamlo.js"></script>
+    <script src="./assets/dreamlo-data.js"></script>
+    
     <!-- Base URL for subdirectory -->
     <base href="/light-novel/">
 </head>
@@ -44,7 +48,6 @@
     </header>
 
     <main class="container reader-container">
-        <!-- Reader Toolbar -->
         <div id="readerToolbar" class="reader-toolbar">
             <div class="toolbar-group">
                 <i class="fas fa-font"></i>
@@ -59,19 +62,23 @@
                 <input type="range" id="fontSizeSlider" min="12" max="32" value="18">
                 <span id="fontSizeValue">18px</span>
             </div>
+            <div class="toolbar-group">
+                <button id="chapterLikeBtn" class="btn-like" title="Like this chapter">
+                    <i class="fas fa-heart"></i>
+                    <span id="chapterLikeCount">0</span>
+                </button>
+                <button id="chapterViewBtn" class="btn-like" title="Chapter views" style="cursor: default;">
+                    <i class="fas fa-eye"></i>
+                    <span id="chapterViewCount">0</span>
+                </button>
+            </div>
         </div>
 
-        <!-- Reader Header -->
         <div class="reader-header">
             <h2 id="novelTitle"></h2>
             <h3 id="chapterTitle"></h3>
-            <button class="reader-like-btn" id="readerLikeBtn">
-                <i class="far fa-heart"></i>
-                <span>0</span>
-            </button>
         </div>
 
-        <!-- Reader Navigation -->
         <div class="reader-navigation">
             <button id="prevChapterBtn" class="nav-btn" disabled>
                 <i class="fas fa-chevron-left"></i>
@@ -91,7 +98,6 @@
             </button>
         </div>
 
-        <!-- Loading & Error States -->
         <div id="loadingIndicator" class="loading hidden">
             <i class="fas fa-spinner fa-spin"></i>
             <span>Loading chapter...</span>
@@ -102,10 +108,8 @@
             <span id="errorText"></span>
         </div>
 
-        <!-- Chapter Content -->
         <div id="chapterContent" class="chapter-content"></div>
 
-        <!-- Reader Footer -->
         <div class="reader-footer">
             <button class="scroll-top-footer" id="scrollToTopBtn" title="Back to top">
                 <i class="fas fa-arrow-up"></i>
@@ -114,8 +118,6 @@
         </div>
     </main>
 
-    <!-- Scripts -->
-    <script src="./assets/dreamlo-config.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
