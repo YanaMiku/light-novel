@@ -1,7 +1,7 @@
-// ============================================
-// STATE MANAGEMENT
-// ============================================
+// script.js - Light Novel Reader with Dreamlo Integration
+// ============================================================
 
+// State management
 let novels = [];
 let filteredNovels = [];
 let bookmarks = [];
@@ -10,503 +10,119 @@ let currentPage = 1;
 let novelsPerPage = 24;
 let previousData = null;
 let autoRefreshInterval = null;
-let deviceId = '';
-let userLikedNovels = [];
-let userLikedChapters = [];
-let isDataLoaded = false;
 
-// Base URL for subdirectory - PERBAIKAN
-const BASE_URL = window.location.origin + '/light-novel';
+// Base URL for subdirectory
+const BASE_URL = '/light-novel';
 
 // DOM Elements
 const loadingIndicator = document.getElementById('loadingIndicator');
 const errorMessage = document.getElementById('errorMessage');
 const errorText = document.getElementById('errorText');
 
-// ============================================
+// Dreamlo state
+let dreamloAPI = null;
+let deviceId = null;
+let dreamloReady = false;
+
+// ============================================================
 // INITIALIZATION
-// ============================================
+// ============================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('🚀 Initializing Light Novel Reader...');
-    console.log(`📍 Base URL: ${BASE_URL}`);
+    // Load Dreamlo first
+    await loadDreamlo();
     
-    // Get device ID
-    deviceId = getDeviceId();
-    console.log(`📱 Device ID: ${deviceId}`);
-    
-    // Load data from localStorage first (fast display)
-    loadFromLocalStorage();
-    
-    // Then load from Dreamlo
-    await loadFromDreamlo();
-    
-    // Load novels
+    // Load data
+    await loadFromLocalStorage();
     await loadNovels();
     
-    // Setup auto-refresh
+    // Setup features
     setupAutoRefresh();
-    
-    // Setup event listeners
     setupEventListeners();
-    
-    // Highlight current page
     highlightCurrentPage();
-    
-    // Update continue reading
-    updateContinueReading();
-    
-    // Load theme
     loadTheme();
-    
-    // Load reader toolbar setting
     loadReaderToolbarSetting();
     
-    console.log('✅ Light Novel Reader initialized successfully');
+    // Update UI
+    await updateUI();
 });
 
-// ============================================
-// DATA LOADING FUNCTIONS
-// ============================================
+// ============================================================
+// DREAMLO INITIALIZATION
+// ============================================================
 
-/**
- * Load user data from Dreamlo
- */
-async function loadFromDreamlo() {
-    try {
-        console.log('📥 Loading user data from Dreamlo...');
-        
-        // Load user bookmarks
-        const allBookmarks = await UserBookmarksDB.getAll();
-        bookmarks = allBookmarks
-            .filter(b => b.deviceId === deviceId)
-            .map(b => b.novelId);
-        console.log(`📑 Loaded ${bookmarks.length} bookmarks`);
-        
-        // Load user likes for novels
-        const allNovelLikes = await UserLikesNovelDB.getAll();
-        userLikedNovels = allNovelLikes
-            .filter(l => l.deviceId === deviceId)
-            .map(l => l.novelId);
-        console.log(`❤️ Loaded ${userLikedNovels.length} novel likes`);
-        
-        // Load user likes for chapters
-        const allChapterLikes = await UserLikesChapterDB.getAll();
-        userLikedChapters = allChapterLikes
-            .filter(l => l.deviceId === deviceId)
-            .map(l => `${l.novelId}_${l.chapterIndex}`);
-        console.log(`📖 Loaded ${userLikedChapters.length} chapter likes`);
-        
-        // Load last read
-        const lastReadData = await getLastReadFromDreamlo(deviceId);
-        if (lastReadData) {
-            lastRead = lastReadData;
-            console.log(`📚 Last read: ${lastRead.novelId} - Chapter ${lastRead.chapterIndex}`);
+async function loadDreamlo() {
+    return new Promise((resolve) => {
+        // Check if DreamloAPI is already loaded
+        if (typeof window.DreamloAPI !== 'undefined') {
+            dreamloAPI = window.DreamloAPI;
+            deviceId = dreamloAPI.DEVICE_ID;
+            dreamloReady = true;
+            console.log('[Dreamlo] API loaded successfully. Device ID:', deviceId);
+            resolve();
+            return;
         }
-        
-        // Save to localStorage as backup
-        saveBookmarks();
-        if (lastRead) {
-            saveLastRead(lastRead.novelId, lastRead.chapterIndex);
-        }
-    } catch (e) {
-        console.error('❌ Error loading from Dreamlo:', e);
-    }
+
+        // Wait for script to load
+        let attempts = 0;
+        const maxAttempts = 50;
+        const checkInterval = setInterval(() => {
+            attempts++;
+            if (typeof window.DreamloAPI !== 'undefined') {
+                dreamloAPI = window.DreamloAPI;
+                deviceId = dreamloAPI.DEVICE_ID;
+                dreamloReady = true;
+                clearInterval(checkInterval);
+                console.log('[Dreamlo] API loaded successfully. Device ID:', deviceId);
+                resolve();
+            } else if (attempts >= maxAttempts) {
+                clearInterval(checkInterval);
+                console.warn('[Dreamlo] API failed to load, using localStorage fallback');
+                dreamloReady = false;
+                resolve();
+            }
+        }, 100);
+    });
 }
 
-/**
- * Load data from localStorage as fallback
- */
+// ============================================================
+// LOCAL STORAGE (Fallback)
+// ============================================================
+
 function loadFromLocalStorage() {
     try {
-        // Load bookmarks
-        const localBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-        if (localBookmarks.length > 0) {
-            bookmarks = localBookmarks;
-        }
-        
-        // Load last read
-        const localLastRead = JSON.parse(localStorage.getItem('lastRead')) || null;
-        if (localLastRead) {
-            lastRead = localLastRead;
-        }
-        
-        // Load cached novels
-        const cachedNovels = JSON.parse(localStorage.getItem('cachedNovels')) || [];
-        if (cachedNovels.length > 0) {
-            novels = cachedNovels;
-            filteredNovels = [...novels];
-            isDataLoaded = true;
-            console.log(`📦 Loaded ${novels.length} novels from cache`);
-        }
-        
-        // Load liked novels
-        const cachedLikedNovels = JSON.parse(localStorage.getItem('cachedLikedNovels')) || [];
-        if (cachedLikedNovels.length > 0) {
-            userLikedNovels = cachedLikedNovels;
-        }
-        
-        // Load liked chapters
-        const cachedLikedChapters = JSON.parse(localStorage.getItem('cachedLikedChapters')) || [];
-        if (cachedLikedChapters.length > 0) {
-            userLikedChapters = cachedLikedChapters;
+        if (!dreamloReady) {
+            bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            lastRead = JSON.parse(localStorage.getItem('lastRead')) || null;
+        } else {
+            // Still load from localStorage for compatibility
+            bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            lastRead = JSON.parse(localStorage.getItem('lastRead')) || null;
         }
     } catch (e) {
-        console.error('❌ Error loading from localStorage:', e);
+        console.error('Error loading from localStorage:', e);
+        bookmarks = [];
+        lastRead = null;
     }
 }
 
-/**
- * Cache data to localStorage
- */
-function cacheData() {
-    try {
-        if (novels.length > 0) {
-            localStorage.setItem('cachedNovels', JSON.stringify(novels));
-        }
-        if (userLikedNovels.length > 0) {
-            localStorage.setItem('cachedLikedNovels', JSON.stringify(userLikedNovels));
-        }
-        if (userLikedChapters.length > 0) {
-            localStorage.setItem('cachedLikedChapters', JSON.stringify(userLikedChapters));
-        }
-    } catch (e) {
-        // Ignore cache errors
-    }
-}
-
-/**
- * Load novels from Dreamlo or seed from local data
- */
-async function loadNovels() {
-    showLoading();
-    try {
-        console.log('📚 Loading novels...');
-        
-        // Get novels from Dreamlo
-        let dreamloNovels = await NovelDB.getAll();
-        console.log(`📊 Found ${dreamloNovels.length} novels in Dreamlo`);
-        
-        // If no novels in Dreamlo, seed from local data
-        if (dreamloNovels.length === 0) {
-            console.log('🔄 No data in Dreamlo, seeding initial data...');
-            
-            // Gunakan fungsi seed yang sudah diperbaiki
-            const seeded = await seedInitialData();
-            
-            if (seeded) {
-                // Reload from Dreamlo
-                dreamloNovels = await NovelDB.getAll();
-                console.log(`✅ Seeded ${dreamloNovels.length} novels`);
-            } else {
-                // Fallback: coba load dari file lokal langsung
-                console.log('⚠️ Seeding failed, trying to load from local file...');
-                const response = await fetch(`./data/novels.json?t=${Date.now()}`);
-                if (!response.ok) throw new Error('Failed to load novels.json');
-                const localNovels = await response.json();
-                
-                // Gunakan data lokal langsung
-                novels = localNovels.map(novel => ({
-                    ...novel,
-                    chapters: novel.chapters || [],
-                    likes: 0,
-                    views: 0
-                }));
-                
-                filteredNovels = [...novels];
-                isDataLoaded = true;
-                cacheData();
-                updateUI();
-                hideLoading();
-                return;
-            }
-        }
-        
-        // Map Dreamlo data to match local format
-        novels = dreamloNovels.map(novel => ({
-            ...novel,
-            chapters: [] // Will be populated separately
-        }));
-        
-        // Load chapters for each novel
-        const allChapters = await ChapterDB.getAll();
-        console.log(`📖 Found ${allChapters.length} chapters in Dreamlo`);
-        
-        for (const novel of novels) {
-            novel.chapters = allChapters
-                .filter(c => c.novelId === novel.id)
-                .sort((a, b) => (a.chapterIndex || 0) - (b.chapterIndex || 0))
-                .map(c => ({
-                    title: c.title || 'Untitled',
-                    file: c.file || 'chapter.md',
-                    likes: parseInt(c.likes) || 0,
-                    views: parseInt(c.views) || 0
-                }));
-        }
-        
-        // Validate that novels have chapters
-        for (const novel of novels) {
-            if (!novel.chapters || novel.chapters.length === 0) {
-                console.warn(`⚠️ Novel "${novel.title}" has no chapters`);
-            }
-        }
-        
-        previousData = JSON.parse(JSON.stringify(novels));
-        filteredNovels = [...novels];
-        isDataLoaded = true;
-        
-        // Cache data
-        cacheData();
-        
-        console.log(`✅ Loaded ${novels.length} novels`);
-        console.log(`📚 Total chapters: ${novels.reduce((acc, n) => acc + (n.chapters?.length || 0), 0)}`);
-        
-        updateUI();
-    } catch (error) {
-        console.error('❌ Error loading novels:', error);
-        showError('Failed to load novels. Please try again.');
-        
-        // Try to load from localStorage as last resort
-        try {
-            const cached = localStorage.getItem('cachedNovels');
-            if (cached) {
-                novels = JSON.parse(cached);
-                filteredNovels = [...novels];
-                isDataLoaded = true;
-                updateUI();
-                console.log('📦 Loaded from cache');
-            }
-        } catch (e) {
-            console.error('❌ Failed to load from cache:', e);
-        }
-    } finally {
-        hideLoading();
-    }
-}
-
-// ============================================
-// SAVE FUNCTIONS
-// ============================================
-
-/**
- * Save bookmarks to localStorage
- */
 function saveBookmarks() {
-    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    if (!dreamloReady) {
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }
 }
 
-/**
- * Save last read to localStorage
- */
-function saveLastRead(novelId, chapterIndex) {
-    if (novelId && chapterIndex !== undefined) {
-        lastRead = { novelId, chapterIndex };
+function saveLastReadLocal(novelId, chapterIndex) {
+    lastRead = { novelId, chapterIndex };
+    if (!dreamloReady) {
         localStorage.setItem('lastRead', JSON.stringify(lastRead));
     }
 }
 
-/**
- * Save bookmarks to Dreamlo
- */
-async function saveBookmarksToDreamlo() {
-    try {
-        await syncBookmarksToDreamlo(bookmarks, deviceId);
-    } catch (e) {
-        console.error('❌ Error saving bookmarks to Dreamlo:', e);
-    }
-}
-
-// ============================================
-// LIKE FUNCTIONS
-// ============================================
-
-/**
- * Toggle like for a novel
- */
-async function toggleLikeNovel(novelId) {
-    const index = userLikedNovels.indexOf(novelId);
-    
-    if (index === -1) {
-        // Add like
-        userLikedNovels.push(novelId);
-        await UserLikesNovelDB.save({
-            id: `${deviceId}_${novelId}`,
-            deviceId: deviceId,
-            novelId: novelId,
-            score: 1,
-            seconds: 0,
-            timestamp: new Date().toISOString()
-        });
-        
-        // Increment novel likes
-        const novel = novels.find(n => n.id === novelId);
-        if (novel) {
-            novel.likes = (parseInt(novel.likes) || 0) + 1;
-            await NovelDB.save({
-                ...novel,
-                score: parseInt(novel.likes) || 0
-            });
-        }
-        console.log(`❤️ Liked novel: ${novelId}`);
-    } else {
-        // Remove like
-        userLikedNovels.splice(index, 1);
-        await UserLikesNovelDB.delete(`${deviceId}_${novelId}`);
-        
-        // Decrement novel likes
-        const novel = novels.find(n => n.id === novelId);
-        if (novel && novel.likes > 0) {
-            novel.likes = parseInt(novel.likes) - 1;
-            await NovelDB.save({
-                ...novel,
-                score: parseInt(novel.likes) || 0
-            });
-        }
-        console.log(`💔 Unliked novel: ${novelId}`);
-    }
-    
-    cacheData();
-    updateUI();
-}
-
-/**
- * Toggle like for a chapter
- */
-async function toggleLikeChapter(novelId, chapterIndex) {
-    const key = `${novelId}_${chapterIndex}`;
-    const index = userLikedChapters.indexOf(key);
-    
-    if (index === -1) {
-        // Add like
-        userLikedChapters.push(key);
-        await UserLikesChapterDB.save({
-            id: `${deviceId}_${novelId}_${chapterIndex}`,
-            deviceId: deviceId,
-            novelId: novelId,
-            chapterIndex: chapterIndex,
-            score: 1,
-            seconds: 0,
-            timestamp: new Date().toISOString()
-        });
-        
-        // Increment chapter likes
-        const allChapters = await ChapterDB.getAll();
-        const chapter = allChapters.find(c => c.novelId === novelId && c.chapterIndex == chapterIndex);
-        if (chapter) {
-            chapter.likes = (parseInt(chapter.likes) || 0) + 1;
-            await ChapterDB.save({
-                ...chapter,
-                score: parseInt(chapter.likes) || 0
-            });
-        }
-        console.log(`❤️ Liked chapter: ${novelId} - ${chapterIndex}`);
-    } else {
-        // Remove like
-        userLikedChapters.splice(index, 1);
-        await UserLikesChapterDB.delete(`${deviceId}_${novelId}_${chapterIndex}`);
-        
-        // Decrement chapter likes
-        const allChapters = await ChapterDB.getAll();
-        const chapter = allChapters.find(c => c.novelId === novelId && c.chapterIndex == chapterIndex);
-        if (chapter && chapter.likes > 0) {
-            chapter.likes = parseInt(chapter.likes) - 1;
-            await ChapterDB.save({
-                ...chapter,
-                score: parseInt(chapter.likes) || 0
-            });
-        }
-        console.log(`💔 Unliked chapter: ${novelId} - ${chapterIndex}`);
-    }
-    
-    cacheData();
-    updateUI();
-}
-
-// ============================================
-// VIEW TRACKING FUNCTIONS
-// ============================================
-
-/**
- * Track novel view
- */
-async function trackNovelView(novelId) {
-    try {
-        const allNovels = await NovelDB.getAll();
-        const novel = allNovels.find(n => n.id === novelId);
-        if (novel) {
-            novel.views = (parseInt(novel.views) || 0) + 1;
-            await NovelDB.save({
-                ...novel,
-                score: parseInt(novel.likes) || 0
-            });
-            console.log(`👁️ Novel view tracked: ${novelId} (${novel.views} views)`);
-        }
-    } catch (e) {
-        console.error('❌ Error tracking novel view:', e);
-    }
-}
-
-/**
- * Track chapter view
- */
-async function trackChapterView(novelId, chapterIndex) {
-    try {
-        const allChapters = await ChapterDB.getAll();
-        const chapter = allChapters.find(c => c.novelId === novelId && c.chapterIndex == chapterIndex);
-        if (chapter) {
-            chapter.views = (parseInt(chapter.views) || 0) + 1;
-            await ChapterDB.save({
-                ...chapter,
-                score: parseInt(chapter.likes) || 0
-            });
-            console.log(`👁️ Chapter view tracked: ${novelId} - ${chapterIndex} (${chapter.views} views)`);
-        }
-    } catch (e) {
-        console.error('❌ Error tracking chapter view:', e);
-    }
-}
-
-// ============================================
-// BOOKMARK FUNCTIONS
-// ============================================
-
-/**
- * Toggle bookmark on card
- */
-async function toggleCardBookmark(event, novelId) {
-    event.stopPropagation();
-    
-    const index = bookmarks.indexOf(novelId);
-    const btn = event.currentTarget;
-    
-    if (index === -1) {
-        bookmarks.push(novelId);
-        btn.classList.add('bookmarked');
-        btn.innerHTML = '<i class="fas fa-bookmark"></i>';
-        console.log(`📑 Bookmarked: ${novelId}`);
-    } else {
-        bookmarks.splice(index, 1);
-        btn.classList.remove('bookmarked');
-        btn.innerHTML = '<i class="far fa-bookmark"></i>';
-        console.log(`📑 Unbookmarked: ${novelId}`);
-    }
-    
-    saveBookmarks();
-    await saveBookmarksToDreamlo();
-    
-    // Update bookmark page if open
-    if (window.location.pathname.includes('bookmark.html')) {
-        loadBookmarks();
-    }
-}
-
-// ============================================
+// ============================================================
 // THEME FUNCTIONS
-// ============================================
+// ============================================================
 
-/**
- * Load theme from localStorage
- */
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.body.className = savedTheme === 'light' ? 'light-theme' : '';
@@ -517,9 +133,6 @@ function loadTheme() {
     }
 }
 
-/**
- * Toggle theme
- */
 function toggleTheme(theme) {
     if (theme === 'light') {
         document.body.classList.add('light-theme');
@@ -529,13 +142,10 @@ function toggleTheme(theme) {
     localStorage.setItem('theme', theme);
 }
 
-// ============================================
-// READER TOOLBAR FUNCTIONS
-// ============================================
+// ============================================================
+// READER TOOLBAR SETTINGS
+// ============================================================
 
-/**
- * Load reader toolbar setting
- */
 function loadReaderToolbarSetting() {
     const showToolbar = localStorage.getItem('showReaderToolbar') !== 'false';
     const toolbar = document.getElementById('readerToolbar');
@@ -551,9 +161,6 @@ function loadReaderToolbarSetting() {
     }
 }
 
-/**
- * Toggle reader toolbar
- */
 function toggleReaderToolbar(show) {
     const toolbar = document.getElementById('readerToolbar');
     if (toolbar) {
@@ -566,13 +173,10 @@ function toggleReaderToolbar(show) {
     localStorage.setItem('showReaderToolbar', show);
 }
 
-// ============================================
-// IMAGE HANDLING FUNCTIONS
-// ============================================
+// ============================================================
+// IMAGE HANDLING
+// ============================================================
 
-/**
- * Handle image load
- */
 function handleImageLoad(imgElement) {
     const coverWrapper = imgElement.closest('.cover-wrapper');
     if (coverWrapper) {
@@ -584,9 +188,6 @@ function handleImageLoad(imgElement) {
     imgElement.style.display = 'block';
 }
 
-/**
- * Handle image error
- */
 function handleImageError(imgElement) {
     const coverWrapper = imgElement.closest('.cover-wrapper');
     if (coverWrapper) {
@@ -600,137 +201,235 @@ function handleImageError(imgElement) {
     imgElement.style.display = 'none';
 }
 
-// ============================================
-// UI UPDATE FUNCTIONS
-// ============================================
+// ============================================================
+// BOOKMARK FUNCTIONS
+// ============================================================
 
-/**
- * Update UI based on current page
- */
-function updateUI() {
-    const path = window.location.pathname;
+async function toggleCardBookmark(event, novelId) {
+    event.stopPropagation();
     
-    if (path === '/light-novel/' || path === '/light-novel/index.html') {
-        updateHomePage();
-    } else if (path === '/light-novel/novel.html') {
-        updateNovelDetailPage();
-    } else if (path === '/light-novel/read.html') {
-        updateReaderPage();
-    } else if (path === '/light-novel/bookmark.html') {
-        loadBookmarks();
+    let isBookmarked = false;
+    
+    if (dreamloReady) {
+        isBookmarked = await dreamloAPI.toggleBookmark(novelId);
+    } else {
+        const index = bookmarks.indexOf(novelId);
+        if (index === -1) {
+            bookmarks.push(novelId);
+            isBookmarked = true;
+        } else {
+            bookmarks.splice(index, 1);
+            isBookmarked = false;
+        }
+        saveBookmarks();
+    }
+    
+    const btn = event.currentTarget;
+    if (isBookmarked) {
+        btn.classList.add('bookmarked');
+        btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+    } else {
+        btn.classList.remove('bookmarked');
+        btn.innerHTML = '<i class="far fa-bookmark"></i>';
+    }
+    
+    // Update bookmark page if open
+    if (window.location.pathname === '/light-novel/bookmark.html' || 
+        window.location.pathname === '/light-novel/bookmark') {
+        await loadBookmarks();
     }
 }
 
-/**
- * Load bookmarks page
- */
+// ============================================================
+// AUTO REFRESH SYSTEM
+// ============================================================
+
+function setupAutoRefresh() {
+    if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+    autoRefreshInterval = setInterval(() => {
+        checkForUpdates();
+    }, 5000);
+}
+
+async function checkForUpdates() {
+    try {
+        const response = await fetch(`${BASE_URL}/data/novels.json?t=${Date.now()}`);
+        const newData = await response.json();
+        
+        if (previousData && JSON.stringify(previousData) !== JSON.stringify(newData)) {
+            console.log('Data updated, refreshing...');
+            novels = newData;
+            previousData = newData;
+            await updateUI();
+        } else if (!previousData) {
+            previousData = newData;
+        }
+    } catch (e) {
+        console.error('Error checking for updates:', e);
+    }
+}
+
+// ============================================================
+// LOAD NOVELS
+// ============================================================
+
+async function loadNovels() {
+    showLoading();
+    try {
+        const response = await fetch(`${BASE_URL}/data/novels.json?t=` + Date.now());
+        if (!response.ok) throw new Error('Failed to load novels');
+        novels = await response.json();
+        previousData = [...novels];
+        filteredNovels = [...novels];
+        await updateUI();
+    } catch (error) {
+        showError('Failed to load novels. Please try again.');
+        console.error(error);
+    } finally {
+        hideLoading();
+    }
+}
+
+// ============================================================
+// UPDATE UI BASED ON CURRENT PAGE
+// ============================================================
+
+async function updateUI() {
+    const path = window.location.pathname;
+    
+    if (path === '/light-novel/' || path === '/light-novel/index.html') {
+        await updateHomePage();
+    } else if (path === '/light-novel/novel.html') {
+        await updateNovelDetailPage();
+    } else if (path === '/light-novel/read.html') {
+        await updateReaderPage();
+    } else if (path === '/light-novel/bookmark.html') {
+        await loadBookmarks();
+    }
+}
+
+// ============================================================
+// LOAD BOOKMARKS PAGE
+// ============================================================
+
 async function loadBookmarks() {
     const bookmarkGrid = document.getElementById('bookmarkGrid');
     const emptyState = document.getElementById('emptyBookmarks');
-    const bookmarkStats = document.getElementById('bookmarkStats');
-    const bookmarkCount = document.getElementById('bookmarkCount');
     
     if (!bookmarkGrid) return;
     
-    const bookmarkedNovels = novels.filter(novel => bookmarks.includes(novel.id));
+    let bookmarkedIds = [];
+    
+    if (dreamloReady) {
+        bookmarkedIds = await dreamloAPI.getBookmarkedNovels();
+    } else {
+        bookmarkedIds = bookmarks;
+    }
+    
+    const bookmarkedNovels = novels.filter(novel => bookmarkedIds.includes(novel.id));
     
     if (bookmarkedNovels.length === 0) {
         if (emptyState) emptyState.classList.remove('hidden');
-        if (bookmarkStats) bookmarkStats.classList.add('hidden');
         bookmarkGrid.innerHTML = '';
         return;
     }
     
     if (emptyState) emptyState.classList.add('hidden');
-    if (bookmarkStats) {
-        bookmarkStats.classList.remove('hidden');
-        if (bookmarkCount) bookmarkCount.textContent = bookmarkedNovels.length;
-    }
     
-    bookmarkGrid.innerHTML = bookmarkedNovels.map(novel => {
-        const isLiked = userLikedNovels.includes(novel.id);
-        const likes = parseInt(novel.likes) || 0;
-        const views = parseInt(novel.views) || 0;
-        
-        return `
-        <div class="novel-card" onclick="goToNovel('${novel.id}')">
-            <div class="cover-wrapper cover-9-16">
-                <div class="skeleton cover-skeleton"></div>
-                <img 
-                    src="${novel.cover}" 
-                    alt="${novel.title}" 
-                    class="novel-cover" 
-                    loading="lazy"
-                    onload="handleImageLoad(this)"
-                    onerror="handleImageError(this)"
-                >
-                <button class="card-bookmark-btn bookmarked" onclick="event.stopPropagation(); toggleCardBookmark(event, '${novel.id}')">
-                    <i class="fas fa-bookmark"></i>
-                </button>
-                <button class="card-like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLikeNovel('${novel.id}')">
-                    <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
-                    <span class="like-count">${likes}</span>
-                </button>
-                <div class="card-stats">
-                    <span><i class="fas fa-eye"></i> ${views}</span>
+    let html = '';
+    for (const novel of bookmarkedNovels) {
+        let stats = { views: 0, likes: 0 };
+        if (dreamloReady) {
+            stats = await dreamloAPI.getNovelStats(novel.id);
+        }
+        html += `
+            <div class="novel-card" onclick="goToNovel('${novel.id}')">
+                <div class="cover-wrapper cover-9-16">
+                    <div class="skeleton cover-skeleton"></div>
+                    <img 
+                        src="${novel.cover}" 
+                        alt="${novel.title}" 
+                        class="novel-cover" 
+                        loading="lazy"
+                        onload="handleImageLoad(this)"
+                        onerror="handleImageError(this)"
+                    >
+                    <button class="card-bookmark-btn bookmarked" onclick="toggleCardBookmark(event, '${novel.id}')">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                    ${stats.views > 0 ? `<div class="card-views"><i class="fas fa-eye"></i> ${stats.views}</div>` : ''}
+                </div>
+                <div class="novel-info">
+                    <h3 class="novel-title">${novel.title}</h3>
+                    <div class="novel-meta">
+                        <span class="status ${novel.status.toLowerCase()}">${novel.status}</span>
+                        <span><i class="fas fa-file-lines"></i> ${novel.chapters.length}</span>
+                    </div>
+                    ${stats.likes > 0 ? `<div class="novel-stats"><i class="fas fa-heart"></i> ${stats.likes}</div>` : ''}
                 </div>
             </div>
-            <div class="novel-info">
-                <h3 class="novel-title">${novel.title}</h3>
-                <div class="novel-meta">
-                    <span class="status ${novel.status.toLowerCase()}">${novel.status}</span>
-                    <span><i class="fas fa-file-lines"></i> ${novel.chapters.length}</span>
-                </div>
-            </div>
-        </div>
-    `}).join('');
+        `;
+    }
+    bookmarkGrid.innerHTML = html;
 }
 
-/**
- * Update continue reading section
- */
+// ============================================================
+// UPDATE CONTINUE READING SECTION
+// ============================================================
+
 async function updateContinueReading() {
     const continueSection = document.getElementById('continueReadingSection');
     const continueCard = document.getElementById('continueReadingCard');
     
-    if (!continueSection || !continueCard || !lastRead || !isDataLoaded) {
-        if (continueSection) continueSection.classList.add('hidden');
-        return;
+    if (!continueSection || !continueCard) return;
+    
+    let lastReadData = null;
+    
+    if (dreamloReady) {
+        const allLastReads = await dreamloAPI.getLastReadAll();
+        if (allLastReads.length > 0) {
+            // Get the most recent
+            const sorted = allLastReads.sort((a, b) => 
+                new Date(b.lastRead) - new Date(a.lastRead)
+            );
+            lastReadData = sorted[0];
+        }
+    } else if (lastRead) {
+        lastReadData = lastRead;
     }
     
-    const novel = novels.find(n => n.id === lastRead.novelId);
-    if (!novel || !novel.chapters || lastRead.chapterIndex >= novel.chapters.length) {
+    if (!lastReadData) {
         continueSection.classList.add('hidden');
         return;
     }
     
-    const chapter = novel.chapters[lastRead.chapterIndex];
+    const novel = novels.find(n => n.id === lastReadData.novelId);
+    if (!novel || lastReadData.chapterIndex >= novel.chapters.length) {
+        continueSection.classList.add('hidden');
+        return;
+    }
+    
+    const chapter = novel.chapters[lastReadData.chapterIndex];
     continueCard.innerHTML = `
         <i class="fas fa-book-open"></i>
         <div class="continue-info">
             <h4>${novel.title}</h4>
             <p>${chapter.title}</p>
         </div>
-        <span class="continue-stats">
-            <i class="fas fa-eye"></i> ${parseInt(novel.views) || 0}
-        </span>
     `;
     
     continueCard.onclick = () => {
-        window.location.href = `${BASE_URL}/read.html?novelId=${novel.id}&chapter=${lastRead.chapterIndex}`;
+        window.location.href = `${BASE_URL}/read.html?novelId=${novel.id}&chapter=${lastReadData.chapterIndex}`;
     };
     
     continueSection.classList.remove('hidden');
 }
 
-// ============================================
-// HOME PAGE FUNCTIONS
-// ============================================
+// ============================================================
+// HOME PAGE
+// ============================================================
 
-/**
- * Update home page
- */
-function updateHomePage() {
+async function updateHomePage() {
     const novelGrid = document.getElementById('novelGrid');
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
@@ -741,7 +440,7 @@ function updateHomePage() {
     
     filterNovels();
     
-    function filterNovels() {
+    async function filterNovels() {
         const searchTerm = searchInput?.value.toLowerCase() || '';
         const sortBy = sortSelect?.value || 'az';
         
@@ -753,80 +452,61 @@ function updateHomePage() {
             filteredNovels.sort((a, b) => a.title.localeCompare(b.title));
         } else if (sortBy === 'latest') {
             filteredNovels.sort((a, b) => new Date(b.created) - new Date(a.created));
-        } else if (sortBy === 'popular') {
-            filteredNovels.sort((a, b) => (parseInt(b.views) || 0) - (parseInt(a.views) || 0));
         }
         
         currentPage = 1;
-        displayNovels();
+        await displayNovels();
     }
     
-    function displayNovels() {
+    async function displayNovels() {
         const start = 0;
         const end = currentPage * novelsPerPage;
         const novelsToShow = filteredNovels.slice(0, end);
         
-        if (novelsToShow.length === 0 && novels.length === 0) {
-            novelGrid.innerHTML = `
-                <div class="empty-state" style="grid-column: 1 / -1;">
-                    <i class="fas fa-books fa-4x"></i>
-                    <h3>No Novels Found</h3>
-                    <p>Try refreshing the page or check your connection.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        if (novelsToShow.length === 0 && searchInput?.value) {
-            novelGrid.innerHTML = `
-                <div class="empty-state" style="grid-column: 1 / -1;">
-                    <i class="fas fa-search fa-4x"></i>
-                    <h3>No Results Found</h3>
-                    <p>Try searching with different keywords.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        novelGrid.innerHTML = novelsToShow.map(novel => {
-            const isBookmarked = bookmarks.includes(novel.id);
-            const isLiked = userLikedNovels.includes(novel.id);
-            const likes = parseInt(novel.likes) || 0;
-            const views = parseInt(novel.views) || 0;
-            const chapterCount = novel.chapters?.length || 0;
+        let html = '';
+        for (const novel of novelsToShow) {
+            let isBookmarked = false;
+            let stats = { views: 0, likes: 0, isLiked: false };
             
-            return `
-            <div class="novel-card" onclick="goToNovel('${novel.id}')">
-                <div class="cover-wrapper cover-9-16">
-                    <div class="skeleton cover-skeleton"></div>
-                    <img 
-                        src="${novel.cover || 'https://via.placeholder.com/300x450/1e2429/6e7b8c?text=No+Cover'}" 
-                        alt="${novel.title}" 
-                        class="novel-cover" 
-                        loading="lazy"
-                        onload="handleImageLoad(this)"
-                        onerror="handleImageError(this)"
-                    >
-                    <button class="card-bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="event.stopPropagation(); toggleCardBookmark(event, '${novel.id}')">
-                        <i class="${isBookmarked ? 'fas' : 'far'} fa-bookmark"></i>
-                    </button>
-                    <button class="card-like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLikeNovel('${novel.id}')">
-                        <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
-                        <span class="like-count">${likes}</span>
-                    </button>
-                    <div class="card-stats">
-                        <span><i class="fas fa-eye"></i> ${views}</span>
+            if (dreamloReady) {
+                isBookmarked = await dreamloAPI.isBookmarked(novel.id);
+                stats = await dreamloAPI.getNovelStats(novel.id);
+            } else {
+                isBookmarked = bookmarks.includes(novel.id);
+            }
+            
+            html += `
+                <div class="novel-card" onclick="goToNovel('${novel.id}')">
+                    <div class="cover-wrapper cover-9-16">
+                        <div class="skeleton cover-skeleton"></div>
+                        <img 
+                            src="${novel.cover}" 
+                            alt="${novel.title}" 
+                            class="novel-cover" 
+                            loading="lazy"
+                            onload="handleImageLoad(this)"
+                            onerror="handleImageError(this)"
+                        >
+                        <button class="card-bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="toggleCardBookmark(event, '${novel.id}')">
+                            <i class="${isBookmarked ? 'fas' : 'far'} fa-bookmark"></i>
+                        </button>
+                        ${stats.views > 0 ? `<div class="card-views"><i class="fas fa-eye"></i> ${stats.views}</div>` : ''}
+                    </div>
+                    <div class="novel-info">
+                        <h3 class="novel-title">${novel.title}</h3>
+                        <div class="novel-meta">
+                            <span class="status ${novel.status.toLowerCase()}">${novel.status}</span>
+                            <span><i class="fas fa-file-lines"></i> ${novel.chapters.length}</span>
+                        </div>
+                        <div class="novel-stats">
+                            ${stats.likes > 0 ? `<span><i class="fas fa-heart ${stats.isLiked ? 'liked' : ''}"></i> ${stats.likes}</span>` : ''}
+                        </div>
                     </div>
                 </div>
-                <div class="novel-info">
-                    <h3 class="novel-title">${novel.title}</h3>
-                    <div class="novel-meta">
-                        <span class="status ${novel.status?.toLowerCase() || 'ongoing'}">${novel.status || 'Ongoing'}</span>
-                        <span><i class="fas fa-file-lines"></i> ${chapterCount}</span>
-                    </div>
-                </div>
-            </div>
-        `}).join('');
+            `;
+        }
+        
+        novelGrid.innerHTML = html;
         
         if (loadMoreBtn) {
             if (end < filteredNovels.length) {
@@ -872,17 +552,14 @@ function updateHomePage() {
         });
     }
     
-    displayNovels();
-    updateContinueReading();
+    await displayNovels();
+    await updateContinueReading();
 }
 
-// ============================================
-// NOVEL DETAIL PAGE FUNCTIONS
-// ============================================
+// ============================================================
+// NOVEL DETAIL PAGE
+// ============================================================
 
-/**
- * Update novel detail page
- */
 async function updateNovelDetailPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const novelId = urlParams.get('id');
@@ -899,126 +576,135 @@ async function updateNovelDetailPage() {
     }
     
     // Track novel view
-    await trackNovelView(novelId);
+    if (dreamloReady) {
+        await dreamloAPI.incrementNovelView(novelId);
+    }
     
     const coverImg = document.getElementById('novelCover');
-    if (coverImg) {
-        coverImg.src = novel.cover || 'https://via.placeholder.com/300x450/1e2429/6e7b8c?text=No+Cover';
-        
-        coverImg.onload = function() {
-            const coverWrapper = this.closest('.cover-wrapper');
-            if (coverWrapper) {
-                const skeleton = coverWrapper.querySelector('.skeleton');
-                if (skeleton) {
-                    skeleton.style.display = 'none';
-                }
-            }
-            this.style.display = 'block';
-        };
-        
-        coverImg.onerror = function() {
-            const coverWrapper = this.closest('.cover-wrapper');
-            if (coverWrapper) {
-                const skeleton = coverWrapper.querySelector('.skeleton');
-                if (skeleton) {
-                    skeleton.classList.add('error-state');
-                    skeleton.innerHTML = '<i class="fas fa-image"></i>';
-                    skeleton.style.display = 'flex';
-                }
-            }
-            this.style.display = 'none';
-        };
-    }
+    coverImg.src = novel.cover;
     
-    document.getElementById('novelTitle').textContent = novel.title || 'Untitled';
+    coverImg.onload = function() {
+        const coverWrapper = this.closest('.cover-wrapper');
+        if (coverWrapper) {
+            const skeleton = coverWrapper.querySelector('.skeleton');
+            if (skeleton) {
+                skeleton.style.display = 'none';
+            }
+        }
+        this.style.display = 'block';
+    };
+    
+    coverImg.onerror = function() {
+        const coverWrapper = this.closest('.cover-wrapper');
+        if (coverWrapper) {
+            const skeleton = coverWrapper.querySelector('.skeleton');
+            if (skeleton) {
+                skeleton.classList.add('error-state');
+                skeleton.innerHTML = '<i class="fas fa-image"></i>';
+                skeleton.style.display = 'flex';
+            }
+        }
+        this.style.display = 'none';
+    };
+    
+    document.getElementById('novelTitle').textContent = novel.title;
     
     const statusBadge = document.getElementById('novelStatus');
-    if (statusBadge) {
-        statusBadge.textContent = novel.status || 'Ongoing';
-        statusBadge.className = `status-badge ${(novel.status || 'ongoing').toLowerCase()}`;
+    statusBadge.textContent = novel.status;
+    statusBadge.className = `status-badge ${novel.status.toLowerCase()}`;
+    
+    // Get stats
+    let stats = { views: 0, likes: 0, isLiked: false };
+    let isBookmarked = false;
+    let lastReadChapter = null;
+    
+    if (dreamloReady) {
+        stats = await dreamloAPI.getNovelStats(novelId);
+        isBookmarked = stats.isBookmarked;
+        lastReadChapter = stats.lastRead;
+    } else {
+        isBookmarked = bookmarks.includes(novel.id);
+        lastReadChapter = lastRead?.novelId === novelId ? lastRead.chapterIndex : null;
     }
     
-    const likes = parseInt(novel.likes) || 0;
-    const views = parseInt(novel.views) || 0;
-    const chapterCount = novel.chapters?.length || 0;
-    
-    document.getElementById('novelStats').innerHTML = `
-        <span><i class="fas fa-eye"></i> ${views} views</span>
-        <span><i class="fas fa-heart"></i> ${likes} likes</span>
-        <span><i class="fas fa-file-lines"></i> ${chapterCount} chapters</span>
-    `;
-    document.getElementById('novelDescription').textContent = novel.description || 'No description available.';
+    document.getElementById('chapterCount').innerHTML = `<i class="fas fa-file-lines"></i> ${novel.chapters.length} chapters <i class="fas fa-eye" style="margin-left: 12px;"></i> ${stats.views} views`;
+    document.getElementById('novelDescription').textContent = novel.description;
     
     // Detail page bookmark button
     const detailBookmarkBtn = document.getElementById('detailBookmarkBtn');
-    const isBookmarked = bookmarks.includes(novel.id);
     if (detailBookmarkBtn) {
         detailBookmarkBtn.innerHTML = isBookmarked ? '<i class="fas fa-bookmark"></i>' : '<i class="far fa-bookmark"></i>';
         detailBookmarkBtn.classList.toggle('bookmarked', isBookmarked);
-        detailBookmarkBtn.onclick = (e) => {
+        detailBookmarkBtn.onclick = async (e) => {
             e.stopPropagation();
-            toggleCardBookmark(e, novel.id);
+            await toggleCardBookmark(e, novel.id);
         };
     }
     
-    // Detail page like button
-    const detailLikeBtn = document.getElementById('detailLikeBtn');
-    const isLiked = userLikedNovels.includes(novel.id);
-    if (detailLikeBtn) {
-        detailLikeBtn.innerHTML = `
-            <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
-            <span>${likes}</span>
+    // Like button
+    const likeBtn = document.getElementById('likeBtn');
+    if (likeBtn) {
+        likeBtn.innerHTML = `
+            <i class="fas fa-heart ${stats.isLiked ? 'liked' : ''}"></i>
+            <span>${stats.likes}</span>
         `;
-        detailLikeBtn.classList.toggle('liked', isLiked);
-        detailLikeBtn.onclick = (e) => {
-            e.stopPropagation();
-            toggleLikeNovel(novel.id);
-        };
-    }
-    
-    const chapterSelect = document.getElementById('chapterSelect');
-    if (chapterSelect && novel.chapters) {
-        chapterSelect.innerHTML = '<option value="">Quick jump to chapter...</option>' + 
-            novel.chapters.map((ch, index) => 
-                `<option value="${index}">${ch.title || `Chapter ${index + 1}`} ${ch.likes ? '❤️' : ''}</option>`
-            ).join('');
-        
-        chapterSelect.onchange = (e) => {
-            if (e.target.value) {
-                goToChapter(novelId, parseInt(e.target.value));
+        likeBtn.onclick = async () => {
+            if (dreamloReady) {
+                const result = await dreamloAPI.toggleNovelLike(novelId);
+                likeBtn.innerHTML = `
+                    <i class="fas fa-heart ${result.liked ? 'liked' : ''}"></i>
+                    <span>${result.total}</span>
+                `;
             }
         };
     }
     
+    // Chapter select dropdown
+    const chapterSelect = document.getElementById('chapterSelect');
+    chapterSelect.innerHTML = '<option value="">Quick jump to chapter...</option>' + 
+        novel.chapters.map((ch, index) => 
+            `<option value="${index}" ${lastReadChapter === index ? 'selected' : ''}>${ch.title}</option>`
+        ).join('');
+    
+    chapterSelect.onchange = (e) => {
+        if (e.target.value) {
+            goToChapter(novelId, parseInt(e.target.value));
+        }
+    };
+    
+    // Chapter list
     const chapterList = document.getElementById('chapterList');
-    if (chapterList && novel.chapters) {
-        chapterList.innerHTML = novel.chapters.map((ch, index) => {
-            const isChapterLiked = userLikedChapters.includes(`${novelId}_${index}`);
-            const chapterLikes = parseInt(ch.likes) || 0;
-            return `
-            <div class="chapter-item" onclick="goToChapter('${novelId}', ${index})">
-                <span><i class="fas fa-file-lines" style="margin-right: 8px;"></i>${ch.title || `Chapter ${index + 1}`}</span>
-                <div class="chapter-item-actions">
-                    ${lastRead?.novelId === novelId && lastRead?.chapterIndex === index ? '<i class="fas fa-book-open" style="color: var(--accent); margin-right: 12px;"></i>' : ''}
-                    <button class="chapter-like-btn ${isChapterLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLikeChapter('${novelId}', ${index})">
-                        <i class="${isChapterLiked ? 'fas' : 'far'} fa-heart"></i>
-                        <span>${chapterLikes}</span>
-                    </button>
+    let chapterHtml = '';
+    for (let i = 0; i < novel.chapters.length; i++) {
+        const ch = novel.chapters[i];
+        let chapterStats = { views: 0, likes: 0 };
+        if (dreamloReady) {
+            chapterStats = {
+                views: await dreamloAPI.getChapterViews(novelId, i),
+                likes: await dreamloAPI.getChapterLikes(novelId, i)
+            };
+        }
+        const isLastRead = lastReadChapter === i;
+        chapterHtml += `
+            <div class="chapter-item" onclick="goToChapter('${novelId}', ${i})">
+                <span><i class="fas fa-file-lines" style="margin-right: 8px;"></i>${ch.title}</span>
+                <div class="chapter-stats">
+                    <span><i class="fas fa-eye"></i> ${chapterStats.views}</span>
+                    <span><i class="fas fa-heart"></i> ${chapterStats.likes}</span>
+                    ${isLastRead ? '<i class="fas fa-book-open" style="color: var(--accent);"></i>' : ''}
                 </div>
             </div>
-        `}).join('');
+        `;
     }
+    chapterList.innerHTML = chapterHtml;
     
     document.getElementById('novelDetail').classList.remove('hidden');
 }
 
-// ============================================
-// READER PAGE FUNCTIONS
-// ============================================
+// ============================================================
+// READER PAGE
+// ============================================================
 
-/**
- * Update reader page
- */
 async function updateReaderPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const novelId = urlParams.get('novelId');
@@ -1030,75 +716,64 @@ async function updateReaderPage() {
     }
     
     const novel = novels.find(n => n.id === novelId);
-    if (!novel || !novel.chapters || chapterIndex >= novel.chapters.length) {
+    if (!novel || chapterIndex >= novel.chapters.length) {
         showError('Chapter not found');
         return;
     }
     
     const chapter = novel.chapters[chapterIndex];
     
-    document.getElementById('novelTitle').textContent = novel.title || 'Untitled';
-    document.getElementById('chapterTitle').textContent = chapter.title || `Chapter ${chapterIndex + 1}`;
-    
-    // Save last read to Dreamlo
-    await saveLastReadToDreamlo(novelId, chapterIndex, deviceId);
-    saveLastRead(novelId, chapterIndex);
-    
-    // Track chapter view
-    await trackChapterView(novelId, chapterIndex);
-    
-    const chapterSelect = document.getElementById('chapterSelect');
-    if (chapterSelect) {
-        chapterSelect.innerHTML = novel.chapters.map((ch, index) => 
-            `<option value="${index}" ${index === chapterIndex ? 'selected' : ''}>${ch.title || `Chapter ${index + 1}`}</option>`
-        ).join('');
-        
-        chapterSelect.onchange = (e) => {
-            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${e.target.value}`;
-        };
+    // Track chapter view and save last read
+    if (dreamloReady) {
+        await dreamloAPI.incrementChapterView(novelId, chapterIndex);
+        await dreamloAPI.saveLastRead(novelId, chapterIndex);
+    } else {
+        saveLastReadLocal(novelId, chapterIndex);
     }
     
+    document.getElementById('novelTitle').textContent = novel.title;
+    document.getElementById('chapterTitle').textContent = chapter.title;
+    
+    // Chapter select
+    const chapterSelect = document.getElementById('chapterSelect');
+    chapterSelect.innerHTML = novel.chapters.map((ch, index) => 
+        `<option value="${index}" ${index === chapterIndex ? 'selected' : ''}>${ch.title}</option>`
+    ).join('');
+    
+    chapterSelect.onchange = (e) => {
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${e.target.value}`;
+    };
+    
+    // Navigation buttons
     const prevBtn = document.getElementById('prevChapterBtn');
     const nextBtn = document.getElementById('nextChapterBtn');
     
-    if (prevBtn) {
-        prevBtn.disabled = chapterIndex === 0;
-        prevBtn.onclick = () => {
-            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
-        };
-    }
+    prevBtn.disabled = chapterIndex === 0;
+    nextBtn.disabled = chapterIndex === novel.chapters.length - 1;
     
-    if (nextBtn) {
-        nextBtn.disabled = chapterIndex === novel.chapters.length - 1;
-        nextBtn.onclick = () => {
-            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
-        };
-    }
+    prevBtn.onclick = () => {
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
+    };
     
-    // Reader like button
-    const readerLikeBtn = document.getElementById('readerLikeBtn');
-    const isLiked = userLikedChapters.includes(`${novelId}_${chapterIndex}`);
-    const likes = parseInt(chapter.likes) || 0;
-    if (readerLikeBtn) {
-        readerLikeBtn.innerHTML = `
-            <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+    nextBtn.onclick = () => {
+        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
+    };
+    
+    // Chapter like button
+    const chapterLikeBtn = document.getElementById('chapterLikeBtn');
+    if (chapterLikeBtn && dreamloReady) {
+        const isLiked = await dreamloAPI.isChapterLiked(novelId, chapterIndex);
+        const likes = await dreamloAPI.getChapterLikes(novelId, chapterIndex);
+        chapterLikeBtn.innerHTML = `
+            <i class="fas fa-heart ${isLiked ? 'liked' : ''}"></i>
             <span>${likes}</span>
         `;
-        readerLikeBtn.classList.toggle('liked', isLiked);
-        readerLikeBtn.onclick = async () => {
-            await toggleLikeChapter(novelId, chapterIndex);
-            // Update UI
-            const updatedNovel = novels.find(n => n.id === novelId);
-            if (updatedNovel && updatedNovel.chapters) {
-                const updatedChapter = updatedNovel.chapters[chapterIndex];
-                const isNowLiked = userLikedChapters.includes(`${novelId}_${chapterIndex}`);
-                const newLikes = parseInt(updatedChapter.likes) || 0;
-                readerLikeBtn.innerHTML = `
-                    <i class="${isNowLiked ? 'fas' : 'far'} fa-heart"></i>
-                    <span>${newLikes}</span>
-                `;
-                readerLikeBtn.classList.toggle('liked', isNowLiked);
-            }
+        chapterLikeBtn.onclick = async () => {
+            const result = await dreamloAPI.toggleChapterLike(novelId, chapterIndex);
+            chapterLikeBtn.innerHTML = `
+                <i class="fas fa-heart ${result.liked ? 'liked' : ''}"></i>
+                <span>${result.total}</span>
+            `;
         };
     }
     
@@ -1106,9 +781,10 @@ async function updateReaderPage() {
     setupReaderSettings();
 }
 
-/**
- * Load chapter content
- */
+// ============================================================
+// LOAD CHAPTER CONTENT
+// ============================================================
+
 async function loadChapterContent(novelId, fileName) {
     showLoading();
     try {
@@ -1116,24 +792,25 @@ async function loadChapterContent(novelId, fileName) {
         if (!response.ok) throw new Error('Failed to load chapter');
         const content = await response.text();
         
-        document.getElementById('chapterContent').innerHTML = marked.parse(content);
+        // Parse markdown with marked
+        if (typeof marked !== 'undefined') {
+            document.getElementById('chapterContent').innerHTML = marked.parse(content);
+        } else {
+            // Fallback: just show plain text
+            document.getElementById('chapterContent').innerHTML = `<pre>${content}</pre>`;
+        }
     } catch (error) {
         showError('Failed to load chapter content');
-        console.error('❌ Error loading chapter content:', error);
-        document.getElementById('chapterContent').innerHTML = `
-            <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>Failed to load chapter content. Please try again.</span>
-            </div>
-        `;
+        console.error(error);
     } finally {
         hideLoading();
     }
 }
 
-/**
- * Setup reader settings
- */
+// ============================================================
+// READER SETTINGS
+// ============================================================
+
 function setupReaderSettings() {
     const content = document.getElementById('chapterContent');
     const fontSelect = document.getElementById('fontFamilySelect');
@@ -1172,99 +849,30 @@ function setupReaderSettings() {
     }
 }
 
-// ============================================
-// AUTO-REFRESH SYSTEM
-// ============================================
-
-/**
- * Setup auto-refresh
- */
-function setupAutoRefresh() {
-    if (autoRefreshInterval) clearInterval(autoRefreshInterval);
-    autoRefreshInterval = setInterval(() => {
-        checkForUpdates();
-    }, 30000); // Check every 30 seconds
-}
-
-/**
- * Check for updates
- */
-async function checkForUpdates() {
-    try {
-        const newNovels = await NovelDB.getAll();
-        if (newNovels.length > 0 && previousData) {
-            const newData = newNovels.map(n => ({
-                ...n,
-                chapters: [] // Will be populated
-            }));
-            
-            // Update chapters
-            const allChapters = await ChapterDB.getAll();
-            for (const novel of newData) {
-                novel.chapters = allChapters
-                    .filter(c => c.novelId === novel.id)
-                    .sort((a, b) => a.chapterIndex - b.chapterIndex)
-                    .map(c => ({
-                        title: c.title,
-                        file: c.file,
-                        likes: parseInt(c.likes) || 0,
-                        views: parseInt(c.views) || 0
-                    }));
-            }
-            
-            if (JSON.stringify(previousData) !== JSON.stringify(newData)) {
-                console.log('🔄 Data updated, refreshing...');
-                novels = newData;
-                previousData = newData;
-                filteredNovels = [...novels];
-                cacheData();
-                updateUI();
-            }
-        }
-    } catch (e) {
-        console.error('❌ Error checking for updates:', e);
-    }
-}
-
-// ============================================
+// ============================================================
 // NAVIGATION FUNCTIONS
-// ============================================
+// ============================================================
 
-/**
- * Go to novel page
- */
 window.goToNovel = function(novelId) {
     window.location.href = `${BASE_URL}/novel.html?id=${novelId}`;
 };
 
-/**
- * Go to chapter page
- */
 window.goToChapter = function(novelId, chapterIndex) {
     window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex}`;
 };
 
-// ============================================
+// ============================================================
 // UTILITY FUNCTIONS
-// ============================================
+// ============================================================
 
-/**
- * Show loading indicator
- */
 function showLoading() {
     if (loadingIndicator) loadingIndicator.classList.remove('hidden');
 }
 
-/**
- * Hide loading indicator
- */
 function hideLoading() {
     if (loadingIndicator) loadingIndicator.classList.add('hidden');
 }
 
-/**
- * Show error message
- */
 function showError(message) {
     if (errorMessage && errorText) {
         errorText.textContent = message;
@@ -1275,9 +883,6 @@ function showError(message) {
     }
 }
 
-/**
- * Highlight current page in navigation
- */
 function highlightCurrentPage() {
     const currentPath = window.location.pathname;
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -1294,13 +899,10 @@ function highlightCurrentPage() {
     });
 }
 
-// ============================================
+// ============================================================
 // EVENT LISTENERS
-// ============================================
+// ============================================================
 
-/**
- * Setup event listeners
- */
 function setupEventListeners() {
     // Settings button and modal
     const settingsBtn = document.getElementById('settingsBtn');
@@ -1364,24 +966,28 @@ function setupEventListeners() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     }
+    
+    // Back button handler
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+        backBtn.onclick = (e) => {
+            e.preventDefault();
+            window.location.href = `${BASE_URL}/`;
+        };
+    }
 }
 
-// ============================================
-// GLOBAL EXPOSURE
-// ============================================
+// ============================================================
+// GLOBAL EXPORTS
+// ============================================================
 
-// Make functions globally accessible
-window.toggleLikeNovel = toggleLikeNovel;
-window.toggleLikeChapter = toggleLikeChapter;
 window.handleImageLoad = handleImageLoad;
 window.handleImageError = handleImageError;
 window.toggleCardBookmark = toggleCardBookmark;
-window.goToNovel = goToNovel;
-window.goToChapter = goToChapter;
 
-// ============================================
+// ============================================================
 // CLEANUP
-// ============================================
+// ============================================================
 
 window.addEventListener('beforeunload', () => {
     if (autoRefreshInterval) {
@@ -1389,32 +995,12 @@ window.addEventListener('beforeunload', () => {
     }
 });
 
-// ============================================
-// CONSOLE HELPERS (Development)
-// ============================================
+// ============================================================
+// CONSOLE LOG FOR DEBUGGING
+// ============================================================
 
-// Expose some helpful debug functions
-if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    window.debug = {
-        novels: () => console.log('Novels:', novels),
-        bookmarks: () => console.log('Bookmarks:', bookmarks),
-        lastRead: () => console.log('Last Read:', lastRead),
-        deviceId: () => console.log('Device ID:', deviceId),
-        likedNovels: () => console.log('Liked Novels:', userLikedNovels),
-        likedChapters: () => console.log('Liked Chapters:', userLikedChapters),
-        reload: async () => {
-            await loadNovels();
-            console.log('Reloaded!');
-        },
-        clearAll: async () => {
-            await NovelDB.clear();
-            await ChapterDB.clear();
-            await UserReadsDB.clear();
-            await UserBookmarksDB.clear();
-            await UserLikesNovelDB.clear();
-            await UserLikesChapterDB.clear();
-            console.log('All data cleared!');
-        }
-    };
-    console.log('🐛 Debug helpers available: window.debug');
+console.log('[Light Novel Reader] Script loaded successfully');
+console.log(`[Light Novel Reader] Dreamlo status: ${dreamloReady ? 'Connected' : 'Fallback mode'}`);
+if (dreamloReady) {
+    console.log(`[Light Novel Reader] Device ID: ${deviceId}`);
 }
