@@ -13,9 +13,10 @@ let autoRefreshInterval = null;
 let deviceId = '';
 let userLikedNovels = [];
 let userLikedChapters = [];
+let isDataLoaded = false;
 
-// Base URL for subdirectory
-const BASE_URL = '/light-novel';
+// Base URL for subdirectory - PERBAIKAN
+const BASE_URL = window.location.origin + '/light-novel';
 
 // DOM Elements
 const loadingIndicator = document.getElementById('loadingIndicator');
@@ -28,16 +29,17 @@ const errorText = document.getElementById('errorText');
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('🚀 Initializing Light Novel Reader...');
+    console.log(`📍 Base URL: ${BASE_URL}`);
     
     // Get device ID
     deviceId = getDeviceId();
     console.log(`📱 Device ID: ${deviceId}`);
     
-    // Load data from Dreamlo
-    await loadFromDreamlo();
-    
-    // Load local storage as backup
+    // Load data from localStorage first (fast display)
     loadFromLocalStorage();
+    
+    // Then load from Dreamlo
+    await loadFromDreamlo();
     
     // Load novels
     await loadNovels();
@@ -117,15 +119,59 @@ async function loadFromDreamlo() {
  */
 function loadFromLocalStorage() {
     try {
-        if (bookmarks.length === 0) {
-            const localBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        // Load bookmarks
+        const localBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        if (localBookmarks.length > 0) {
             bookmarks = localBookmarks;
         }
-        if (!lastRead) {
-            lastRead = JSON.parse(localStorage.getItem('lastRead')) || null;
+        
+        // Load last read
+        const localLastRead = JSON.parse(localStorage.getItem('lastRead')) || null;
+        if (localLastRead) {
+            lastRead = localLastRead;
+        }
+        
+        // Load cached novels
+        const cachedNovels = JSON.parse(localStorage.getItem('cachedNovels')) || [];
+        if (cachedNovels.length > 0) {
+            novels = cachedNovels;
+            filteredNovels = [...novels];
+            isDataLoaded = true;
+            console.log(`📦 Loaded ${novels.length} novels from cache`);
+        }
+        
+        // Load liked novels
+        const cachedLikedNovels = JSON.parse(localStorage.getItem('cachedLikedNovels')) || [];
+        if (cachedLikedNovels.length > 0) {
+            userLikedNovels = cachedLikedNovels;
+        }
+        
+        // Load liked chapters
+        const cachedLikedChapters = JSON.parse(localStorage.getItem('cachedLikedChapters')) || [];
+        if (cachedLikedChapters.length > 0) {
+            userLikedChapters = cachedLikedChapters;
         }
     } catch (e) {
         console.error('❌ Error loading from localStorage:', e);
+    }
+}
+
+/**
+ * Cache data to localStorage
+ */
+function cacheData() {
+    try {
+        if (novels.length > 0) {
+            localStorage.setItem('cachedNovels', JSON.stringify(novels));
+        }
+        if (userLikedNovels.length > 0) {
+            localStorage.setItem('cachedLikedNovels', JSON.stringify(userLikedNovels));
+        }
+        if (userLikedChapters.length > 0) {
+            localStorage.setItem('cachedLikedChapters', JSON.stringify(userLikedChapters));
+        }
+    } catch (e) {
+        // Ignore cache errors
     }
 }
 
@@ -141,44 +187,39 @@ async function loadNovels() {
         let dreamloNovels = await NovelDB.getAll();
         console.log(`📊 Found ${dreamloNovels.length} novels in Dreamlo`);
         
-        // If no novels in Dreamlo, initialize from local data
+        // If no novels in Dreamlo, seed from local data
         if (dreamloNovels.length === 0) {
-            console.log('🔄 Seeding initial data from local novels.json...');
+            console.log('🔄 No data in Dreamlo, seeding initial data...');
             
-            const response = await fetch(`${BASE_URL}/data/novels.json?t=` + Date.now());
-            if (!response.ok) throw new Error('Failed to load novels.json');
-            const localNovels = await response.json();
+            // Gunakan fungsi seed yang sudah diperbaiki
+            const seeded = await seedInitialData();
             
-            // Seed Dreamlo with initial data
-            for (const novel of localNovels) {
-                await NovelDB.save({
-                    ...novel,
-                    id: novel.id,
-                    score: 0,
-                    seconds: 0,
-                    views: 0,
-                    likes: 0
-                });
+            if (seeded) {
+                // Reload from Dreamlo
+                dreamloNovels = await NovelDB.getAll();
+                console.log(`✅ Seeded ${dreamloNovels.length} novels`);
+            } else {
+                // Fallback: coba load dari file lokal langsung
+                console.log('⚠️ Seeding failed, trying to load from local file...');
+                const response = await fetch(`./data/novels.json?t=${Date.now()}`);
+                if (!response.ok) throw new Error('Failed to load novels.json');
+                const localNovels = await response.json();
                 
-                // Seed chapters
-                for (let i = 0; i < novel.chapters.length; i++) {
-                    await ChapterDB.save({
-                        id: `${novel.id}_${i}`,
-                        novelId: novel.id,
-                        chapterIndex: i,
-                        title: novel.chapters[i].title,
-                        file: novel.chapters[i].file,
-                        score: 0,
-                        seconds: 0,
-                        views: 0,
-                        likes: 0
-                    });
-                }
+                // Gunakan data lokal langsung
+                novels = localNovels.map(novel => ({
+                    ...novel,
+                    chapters: novel.chapters || [],
+                    likes: 0,
+                    views: 0
+                }));
+                
+                filteredNovels = [...novels];
+                isDataLoaded = true;
+                cacheData();
+                updateUI();
+                hideLoading();
+                return;
             }
-            
-            // Reload from Dreamlo
-            dreamloNovels = await NovelDB.getAll();
-            console.log(`✅ Seeded ${dreamloNovels.length} novels`);
         }
         
         // Map Dreamlo data to match local format
@@ -189,26 +230,55 @@ async function loadNovels() {
         
         // Load chapters for each novel
         const allChapters = await ChapterDB.getAll();
+        console.log(`📖 Found ${allChapters.length} chapters in Dreamlo`);
+        
         for (const novel of novels) {
             novel.chapters = allChapters
                 .filter(c => c.novelId === novel.id)
-                .sort((a, b) => a.chapterIndex - b.chapterIndex)
+                .sort((a, b) => (a.chapterIndex || 0) - (b.chapterIndex || 0))
                 .map(c => ({
-                    title: c.title,
-                    file: c.file,
+                    title: c.title || 'Untitled',
+                    file: c.file || 'chapter.md',
                     likes: parseInt(c.likes) || 0,
                     views: parseInt(c.views) || 0
                 }));
         }
         
-        previousData = [...novels];
-        filteredNovels = [...novels];
+        // Validate that novels have chapters
+        for (const novel of novels) {
+            if (!novel.chapters || novel.chapters.length === 0) {
+                console.warn(`⚠️ Novel "${novel.title}" has no chapters`);
+            }
+        }
         
-        console.log(`✅ Loaded ${novels.length} novels with chapters`);
+        previousData = JSON.parse(JSON.stringify(novels));
+        filteredNovels = [...novels];
+        isDataLoaded = true;
+        
+        // Cache data
+        cacheData();
+        
+        console.log(`✅ Loaded ${novels.length} novels`);
+        console.log(`📚 Total chapters: ${novels.reduce((acc, n) => acc + (n.chapters?.length || 0), 0)}`);
+        
         updateUI();
     } catch (error) {
         console.error('❌ Error loading novels:', error);
         showError('Failed to load novels. Please try again.');
+        
+        // Try to load from localStorage as last resort
+        try {
+            const cached = localStorage.getItem('cachedNovels');
+            if (cached) {
+                novels = JSON.parse(cached);
+                filteredNovels = [...novels];
+                isDataLoaded = true;
+                updateUI();
+                console.log('📦 Loaded from cache');
+            }
+        } catch (e) {
+            console.error('❌ Failed to load from cache:', e);
+        }
     } finally {
         hideLoading();
     }
@@ -295,6 +365,7 @@ async function toggleLikeNovel(novelId) {
         console.log(`💔 Unliked novel: ${novelId}`);
     }
     
+    cacheData();
     updateUI();
 }
 
@@ -347,6 +418,7 @@ async function toggleLikeChapter(novelId, chapterIndex) {
         console.log(`💔 Unliked chapter: ${novelId} - ${chapterIndex}`);
     }
     
+    cacheData();
     updateUI();
 }
 
@@ -423,7 +495,7 @@ async function toggleCardBookmark(event, novelId) {
     await saveBookmarksToDreamlo();
     
     // Update bookmark page if open
-    if (window.location.pathname === '/light-novel/bookmark.html') {
+    if (window.location.pathname.includes('bookmark.html')) {
         loadBookmarks();
     }
 }
@@ -555,6 +627,8 @@ function updateUI() {
 async function loadBookmarks() {
     const bookmarkGrid = document.getElementById('bookmarkGrid');
     const emptyState = document.getElementById('emptyBookmarks');
+    const bookmarkStats = document.getElementById('bookmarkStats');
+    const bookmarkCount = document.getElementById('bookmarkCount');
     
     if (!bookmarkGrid) return;
     
@@ -562,11 +636,16 @@ async function loadBookmarks() {
     
     if (bookmarkedNovels.length === 0) {
         if (emptyState) emptyState.classList.remove('hidden');
+        if (bookmarkStats) bookmarkStats.classList.add('hidden');
         bookmarkGrid.innerHTML = '';
         return;
     }
     
     if (emptyState) emptyState.classList.add('hidden');
+    if (bookmarkStats) {
+        bookmarkStats.classList.remove('hidden');
+        if (bookmarkCount) bookmarkCount.textContent = bookmarkedNovels.length;
+    }
     
     bookmarkGrid.innerHTML = bookmarkedNovels.map(novel => {
         const isLiked = userLikedNovels.includes(novel.id);
@@ -614,13 +693,13 @@ async function updateContinueReading() {
     const continueSection = document.getElementById('continueReadingSection');
     const continueCard = document.getElementById('continueReadingCard');
     
-    if (!continueSection || !continueCard || !lastRead) {
+    if (!continueSection || !continueCard || !lastRead || !isDataLoaded) {
         if (continueSection) continueSection.classList.add('hidden');
         return;
     }
     
     const novel = novels.find(n => n.id === lastRead.novelId);
-    if (!novel || lastRead.chapterIndex >= novel.chapters.length) {
+    if (!novel || !novel.chapters || lastRead.chapterIndex >= novel.chapters.length) {
         continueSection.classList.add('hidden');
         return;
     }
@@ -687,18 +766,41 @@ function updateHomePage() {
         const end = currentPage * novelsPerPage;
         const novelsToShow = filteredNovels.slice(0, end);
         
+        if (novelsToShow.length === 0 && novels.length === 0) {
+            novelGrid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <i class="fas fa-books fa-4x"></i>
+                    <h3>No Novels Found</h3>
+                    <p>Try refreshing the page or check your connection.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        if (novelsToShow.length === 0 && searchInput?.value) {
+            novelGrid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <i class="fas fa-search fa-4x"></i>
+                    <h3>No Results Found</h3>
+                    <p>Try searching with different keywords.</p>
+                </div>
+            `;
+            return;
+        }
+        
         novelGrid.innerHTML = novelsToShow.map(novel => {
             const isBookmarked = bookmarks.includes(novel.id);
             const isLiked = userLikedNovels.includes(novel.id);
             const likes = parseInt(novel.likes) || 0;
             const views = parseInt(novel.views) || 0;
+            const chapterCount = novel.chapters?.length || 0;
             
             return `
             <div class="novel-card" onclick="goToNovel('${novel.id}')">
                 <div class="cover-wrapper cover-9-16">
                     <div class="skeleton cover-skeleton"></div>
                     <img 
-                        src="${novel.cover}" 
+                        src="${novel.cover || 'https://via.placeholder.com/300x450/1e2429/6e7b8c?text=No+Cover'}" 
                         alt="${novel.title}" 
                         class="novel-cover" 
                         loading="lazy"
@@ -719,8 +821,8 @@ function updateHomePage() {
                 <div class="novel-info">
                     <h3 class="novel-title">${novel.title}</h3>
                     <div class="novel-meta">
-                        <span class="status ${novel.status.toLowerCase()}">${novel.status}</span>
-                        <span><i class="fas fa-file-lines"></i> ${novel.chapters.length}</span>
+                        <span class="status ${novel.status?.toLowerCase() || 'ongoing'}">${novel.status || 'Ongoing'}</span>
+                        <span><i class="fas fa-file-lines"></i> ${chapterCount}</span>
                     </div>
                 </div>
             </div>
@@ -800,46 +902,52 @@ async function updateNovelDetailPage() {
     await trackNovelView(novelId);
     
     const coverImg = document.getElementById('novelCover');
-    coverImg.src = novel.cover;
-    
-    coverImg.onload = function() {
-        const coverWrapper = this.closest('.cover-wrapper');
-        if (coverWrapper) {
-            const skeleton = coverWrapper.querySelector('.skeleton');
-            if (skeleton) {
-                skeleton.style.display = 'none';
+    if (coverImg) {
+        coverImg.src = novel.cover || 'https://via.placeholder.com/300x450/1e2429/6e7b8c?text=No+Cover';
+        
+        coverImg.onload = function() {
+            const coverWrapper = this.closest('.cover-wrapper');
+            if (coverWrapper) {
+                const skeleton = coverWrapper.querySelector('.skeleton');
+                if (skeleton) {
+                    skeleton.style.display = 'none';
+                }
             }
-        }
-        this.style.display = 'block';
-    };
-    
-    coverImg.onerror = function() {
-        const coverWrapper = this.closest('.cover-wrapper');
-        if (coverWrapper) {
-            const skeleton = coverWrapper.querySelector('.skeleton');
-            if (skeleton) {
-                skeleton.classList.add('error-state');
-                skeleton.innerHTML = '<i class="fas fa-image"></i>';
-                skeleton.style.display = 'flex';
+            this.style.display = 'block';
+        };
+        
+        coverImg.onerror = function() {
+            const coverWrapper = this.closest('.cover-wrapper');
+            if (coverWrapper) {
+                const skeleton = coverWrapper.querySelector('.skeleton');
+                if (skeleton) {
+                    skeleton.classList.add('error-state');
+                    skeleton.innerHTML = '<i class="fas fa-image"></i>';
+                    skeleton.style.display = 'flex';
+                }
             }
-        }
-        this.style.display = 'none';
-    };
+            this.style.display = 'none';
+        };
+    }
     
-    document.getElementById('novelTitle').textContent = novel.title;
+    document.getElementById('novelTitle').textContent = novel.title || 'Untitled';
     
     const statusBadge = document.getElementById('novelStatus');
-    statusBadge.textContent = novel.status;
-    statusBadge.className = `status-badge ${novel.status.toLowerCase()}`;
+    if (statusBadge) {
+        statusBadge.textContent = novel.status || 'Ongoing';
+        statusBadge.className = `status-badge ${(novel.status || 'ongoing').toLowerCase()}`;
+    }
     
     const likes = parseInt(novel.likes) || 0;
     const views = parseInt(novel.views) || 0;
+    const chapterCount = novel.chapters?.length || 0;
+    
     document.getElementById('novelStats').innerHTML = `
         <span><i class="fas fa-eye"></i> ${views} views</span>
         <span><i class="fas fa-heart"></i> ${likes} likes</span>
-        <span><i class="fas fa-file-lines"></i> ${novel.chapters.length} chapters</span>
+        <span><i class="fas fa-file-lines"></i> ${chapterCount} chapters</span>
     `;
-    document.getElementById('novelDescription').textContent = novel.description;
+    document.getElementById('novelDescription').textContent = novel.description || 'No description available.';
     
     // Detail page bookmark button
     const detailBookmarkBtn = document.getElementById('detailBookmarkBtn');
@@ -869,33 +977,37 @@ async function updateNovelDetailPage() {
     }
     
     const chapterSelect = document.getElementById('chapterSelect');
-    chapterSelect.innerHTML = '<option value="">Quick jump to chapter...</option>' + 
-        novel.chapters.map((ch, index) => 
-            `<option value="${index}">${ch.title} ${ch.likes ? '❤️' : ''}</option>`
-        ).join('');
-    
-    chapterSelect.onchange = (e) => {
-        if (e.target.value) {
-            goToChapter(novelId, parseInt(e.target.value));
-        }
-    };
+    if (chapterSelect && novel.chapters) {
+        chapterSelect.innerHTML = '<option value="">Quick jump to chapter...</option>' + 
+            novel.chapters.map((ch, index) => 
+                `<option value="${index}">${ch.title || `Chapter ${index + 1}`} ${ch.likes ? '❤️' : ''}</option>`
+            ).join('');
+        
+        chapterSelect.onchange = (e) => {
+            if (e.target.value) {
+                goToChapter(novelId, parseInt(e.target.value));
+            }
+        };
+    }
     
     const chapterList = document.getElementById('chapterList');
-    chapterList.innerHTML = novel.chapters.map((ch, index) => {
-        const isChapterLiked = userLikedChapters.includes(`${novelId}_${index}`);
-        const chapterLikes = parseInt(ch.likes) || 0;
-        return `
-        <div class="chapter-item" onclick="goToChapter('${novelId}', ${index})">
-            <span><i class="fas fa-file-lines" style="margin-right: 8px;"></i>${ch.title}</span>
-            <div class="chapter-item-actions">
-                ${lastRead?.novelId === novelId && lastRead?.chapterIndex === index ? '<i class="fas fa-book-open" style="color: var(--accent); margin-right: 12px;"></i>' : ''}
-                <button class="chapter-like-btn ${isChapterLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLikeChapter('${novelId}', ${index})">
-                    <i class="${isChapterLiked ? 'fas' : 'far'} fa-heart"></i>
-                    <span>${chapterLikes}</span>
-                </button>
+    if (chapterList && novel.chapters) {
+        chapterList.innerHTML = novel.chapters.map((ch, index) => {
+            const isChapterLiked = userLikedChapters.includes(`${novelId}_${index}`);
+            const chapterLikes = parseInt(ch.likes) || 0;
+            return `
+            <div class="chapter-item" onclick="goToChapter('${novelId}', ${index})">
+                <span><i class="fas fa-file-lines" style="margin-right: 8px;"></i>${ch.title || `Chapter ${index + 1}`}</span>
+                <div class="chapter-item-actions">
+                    ${lastRead?.novelId === novelId && lastRead?.chapterIndex === index ? '<i class="fas fa-book-open" style="color: var(--accent); margin-right: 12px;"></i>' : ''}
+                    <button class="chapter-like-btn ${isChapterLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLikeChapter('${novelId}', ${index})">
+                        <i class="${isChapterLiked ? 'fas' : 'far'} fa-heart"></i>
+                        <span>${chapterLikes}</span>
+                    </button>
+                </div>
             </div>
-        </div>
-    `}).join('');
+        `}).join('');
+    }
     
     document.getElementById('novelDetail').classList.remove('hidden');
 }
@@ -918,15 +1030,15 @@ async function updateReaderPage() {
     }
     
     const novel = novels.find(n => n.id === novelId);
-    if (!novel || chapterIndex >= novel.chapters.length) {
+    if (!novel || !novel.chapters || chapterIndex >= novel.chapters.length) {
         showError('Chapter not found');
         return;
     }
     
     const chapter = novel.chapters[chapterIndex];
     
-    document.getElementById('novelTitle').textContent = novel.title;
-    document.getElementById('chapterTitle').textContent = chapter.title;
+    document.getElementById('novelTitle').textContent = novel.title || 'Untitled';
+    document.getElementById('chapterTitle').textContent = chapter.title || `Chapter ${chapterIndex + 1}`;
     
     // Save last read to Dreamlo
     await saveLastReadToDreamlo(novelId, chapterIndex, deviceId);
@@ -936,27 +1048,32 @@ async function updateReaderPage() {
     await trackChapterView(novelId, chapterIndex);
     
     const chapterSelect = document.getElementById('chapterSelect');
-    chapterSelect.innerHTML = novel.chapters.map((ch, index) => 
-        `<option value="${index}" ${index === chapterIndex ? 'selected' : ''}>${ch.title}</option>`
-    ).join('');
-    
-    chapterSelect.onchange = (e) => {
-        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${e.target.value}`;
-    };
+    if (chapterSelect) {
+        chapterSelect.innerHTML = novel.chapters.map((ch, index) => 
+            `<option value="${index}" ${index === chapterIndex ? 'selected' : ''}>${ch.title || `Chapter ${index + 1}`}</option>`
+        ).join('');
+        
+        chapterSelect.onchange = (e) => {
+            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${e.target.value}`;
+        };
+    }
     
     const prevBtn = document.getElementById('prevChapterBtn');
     const nextBtn = document.getElementById('nextChapterBtn');
     
-    prevBtn.disabled = chapterIndex === 0;
-    nextBtn.disabled = chapterIndex === novel.chapters.length - 1;
+    if (prevBtn) {
+        prevBtn.disabled = chapterIndex === 0;
+        prevBtn.onclick = () => {
+            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
+        };
+    }
     
-    prevBtn.onclick = () => {
-        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex - 1}`;
-    };
-    
-    nextBtn.onclick = () => {
-        window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
-    };
+    if (nextBtn) {
+        nextBtn.disabled = chapterIndex === novel.chapters.length - 1;
+        nextBtn.onclick = () => {
+            window.location.href = `${BASE_URL}/read.html?novelId=${novelId}&chapter=${chapterIndex + 1}`;
+        };
+    }
     
     // Reader like button
     const readerLikeBtn = document.getElementById('readerLikeBtn');
@@ -972,7 +1089,7 @@ async function updateReaderPage() {
             await toggleLikeChapter(novelId, chapterIndex);
             // Update UI
             const updatedNovel = novels.find(n => n.id === novelId);
-            if (updatedNovel) {
+            if (updatedNovel && updatedNovel.chapters) {
                 const updatedChapter = updatedNovel.chapters[chapterIndex];
                 const isNowLiked = userLikedChapters.includes(`${novelId}_${chapterIndex}`);
                 const newLikes = parseInt(updatedChapter.likes) || 0;
@@ -1003,6 +1120,12 @@ async function loadChapterContent(novelId, fileName) {
     } catch (error) {
         showError('Failed to load chapter content');
         console.error('❌ Error loading chapter content:', error);
+        document.getElementById('chapterContent').innerHTML = `
+            <div class="error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Failed to load chapter content. Please try again.</span>
+            </div>
+        `;
     } finally {
         hideLoading();
     }
@@ -1094,6 +1217,7 @@ async function checkForUpdates() {
                 novels = newData;
                 previousData = newData;
                 filteredNovels = [...novels];
+                cacheData();
                 updateUI();
             }
         }
